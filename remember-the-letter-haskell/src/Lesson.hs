@@ -1,5 +1,12 @@
+{-|
+Module      : Lesson
+Description : A lesson consists of flashcard data, and related functions.
+-}
+
+
 module Lesson where
 
+-- | A flahscard has a front side, and a back side.
 data Flashcard =
   Flashcard
   { front :: String
@@ -8,9 +15,10 @@ data Flashcard =
 
 
 
-
+-- | The front and backs of every flashcard in a given list.
 lessonSummary :: [Flashcard] -> String
 lessonSummary flashcards = unlines (map showFlashcard flashcards)
 
+-- | The front and back of a single flashcard.
 showFlashcard :: Flashcard -> String
 showFlashcard card = (front card) ++ " | " ++ (back card)

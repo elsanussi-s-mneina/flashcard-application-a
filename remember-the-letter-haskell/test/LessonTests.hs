@@ -1,3 +1,8 @@
+{-|
+Module      : LessonTests
+Description : Automated tests of the Lesson module belong here.
+-}
+
 module LessonTests (lessonSpecs) where
 
 import Test.Hspec
