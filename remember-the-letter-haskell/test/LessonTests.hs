@@ -19,6 +19,11 @@ flashcard2 = Flashcard {front = "a", back = "un/une"}
 lessonSpecs :: Spec
 lessonSpecs =
   do
+  describe "showFlashcard" $ do
+    it ("should return the front side " ++
+        "then a pipe character then the back side") $ do
+      showFlashcard (Flashcard "Z" "d") `shouldBe` "Z | d"
+      showFlashcard (Flashcard "AB" "abc") `shouldBe` "AB | abc"
   describe "lessonSummary" $ do
     it ("should,return the front side then a pipe character " ++
         " then the back side of the first card " ++
