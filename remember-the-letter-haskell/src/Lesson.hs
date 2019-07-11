@@ -2,9 +2,13 @@ module Lesson
     ( lessonSummary
     ) where
 
+flashcards :: [String]
+flashcards = [flashcard1, flashcard2]
+
+
 
 lessonSummary :: String
-lessonSummary =  showFlashcard flashcard1 ++ showFlashcard flashcard2
+lessonSummary = foldr (++) "" (map showFlashcard flashcards)
 
 showFlashcard :: String -> String
 showFlashcard x = x ++ " \n "
