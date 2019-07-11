@@ -29,4 +29,6 @@ main =
     putStrLn "Printing Lesson summary:"
     putStrLn (lessonSummary flashcards)
   else
-    putStrLn "Sorry, that feature is not implemented yet."
+    do
+    putStrLn "Print only fronts of each card:"
+    putStrLn (frontSummary flashcards)

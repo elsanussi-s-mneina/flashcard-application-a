@@ -19,6 +19,14 @@ data Flashcard =
 lessonSummary :: [Flashcard] -> String
 lessonSummary flashcards = unlines (map showFlashcard flashcards)
 
+-- | The fronts of every flashcard in a given list.
+frontSummary :: [Flashcard] -> String
+frontSummary flashcards = unlines (map showFlashcardFront flashcards)
+
 -- | The front and back of a single flashcard.
 showFlashcard :: Flashcard -> String
 showFlashcard card = (front card) ++ " | " ++ (back card)
+
+-- | Show the front of a single flashcard
+showFlashcardFront :: Flashcard -> String
+showFlashcardFront card = front card

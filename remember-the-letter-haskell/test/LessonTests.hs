@@ -24,6 +24,23 @@ lessonSpecs =
         "then a pipe character then the back side") $ do
       showFlashcard (Flashcard "Z" "d") `shouldBe` "Z | d"
       showFlashcard (Flashcard "AB" "abc") `shouldBe` "AB | abc"
+  describe "showFlashcardFront" $ do
+     it ("should return \"one\" when the front side is \"one\"") $ do
+       showFlashcardFront (Flashcard "one" "une") `shouldBe` "one"
+     it ("should return \"three\" when the front side is \"three\"") $ do
+       showFlashcardFront (Flashcard "three" "h") `shouldBe` "three"
+  describe "frontSummary" $ do
+    it ("should return an empty string when given an empty list") $ do
+      frontSummary [] `shouldBe` ""
+    it ("should return \"one\" followed by a new line when given a " ++
+        "list with a single flashcard whose front side is \"one\" ") $ do
+      frontSummary [(Flashcard "one" "une")] `shouldBe` "one\n"
+    it ("should return \"a\" followed by a new line " ++
+        "followed by a \"b\" followed by a new line when given a " ++
+        "list with a single flashcard whose front side is \"one\" ") $ do
+      frontSummary [(Flashcard "a" "sf"), (Flashcard "b" "wh")]
+      `shouldBe` "a\nb\n"
+
   describe "lessonSummary" $ do
     it ("should,return the front side then a pipe character " ++
         " then the back side of the first card " ++
