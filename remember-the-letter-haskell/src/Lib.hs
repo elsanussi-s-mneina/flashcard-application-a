@@ -1,6 +1,6 @@
 module Lib
-    ( someFunc
+    ( welcome
     ) where
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+welcome :: IO ()
+welcome = putStrLn "Welcome to Remember the Letter (Haskell)"
