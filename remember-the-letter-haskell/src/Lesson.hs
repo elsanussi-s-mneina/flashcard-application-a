@@ -14,7 +14,7 @@ showFlashcard :: String -> String
 showFlashcard x = x
 
 flashcard1 :: String
-flashcard1 = "the | le/la"
+flashcard1 = "the" ++ " | " ++ "le/la"
 
 flashcard2 :: String
-flashcard2 = "a | un/une"
+flashcard2 = "a" ++ " | " ++ "un/une"
