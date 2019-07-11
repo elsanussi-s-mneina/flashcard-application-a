@@ -19,6 +19,14 @@ main :: IO ()
 main =
   do
   welcome     -- show a welcome message.
+  putStrLn "Enter 'a' to show both front and back of each card."
+  putStrLn "Enter 'f' to show the front of each card."
   putStrLn "" -- blank line
-  putStrLn "Printing Lesson summary:"
-  putStrLn (lessonSummary flashcards)
+  userInput <- getLine
+  if userInput == "a"
+  then
+    do
+    putStrLn "Printing Lesson summary:"
+    putStrLn (lessonSummary flashcards)
+  else
+    putStrLn "Sorry, that feature is not implemented yet."
