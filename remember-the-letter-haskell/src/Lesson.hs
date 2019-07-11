@@ -2,8 +2,12 @@ module Lesson
     ( lessonSummary
     ) where
 
+
 lessonSummary :: String
-lessonSummary =  flashcard1 ++ " \n " ++ flashcard2 ++ " \n "
+lessonSummary =  showFlashcard flashcard1 ++ showFlashcard flashcard2
+
+showFlashcard :: String -> String
+showFlashcard x = x ++ " \n "
 
 flashcard1 :: String
 flashcard1 = "the | le/la"
