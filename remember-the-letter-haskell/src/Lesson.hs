@@ -2,7 +2,9 @@ module Lesson
     ( lessonSummary
     ) where
 
-flashcards :: [String]
+data Flashcard = Flashcard String String
+
+flashcards :: [Flashcard]
 flashcards = [flashcard1, flashcard2]
 
 
@@ -10,11 +12,11 @@ flashcards = [flashcard1, flashcard2]
 lessonSummary :: String
 lessonSummary = unlines (map showFlashcard flashcards)
 
-showFlashcard :: String -> String
-showFlashcard x = x
+showFlashcard :: Flashcard -> String
+showFlashcard (Flashcard a b) = a ++ " | " ++ b
 
-flashcard1 :: String
-flashcard1 = "the" ++ " | " ++ "le/la"
+flashcard1 :: Flashcard
+flashcard1 = (Flashcard "the" "le/la")
 
-flashcard2 :: String
-flashcard2 = "a" ++ " | " ++ "un/une"
+flashcard2 :: Flashcard
+flashcard2 = (Flashcard "a" "un/une")
