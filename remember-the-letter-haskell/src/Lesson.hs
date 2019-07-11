@@ -11,7 +11,7 @@ lessonSummary :: String
 lessonSummary = foldr (++) "" (map showFlashcard flashcards)
 
 showFlashcard :: String -> String
-showFlashcard x = x ++ " \n "
+showFlashcard x = x ++ "\n"
 
 flashcard1 :: String
 flashcard1 = "the | le/la"
