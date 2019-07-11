@@ -2,7 +2,11 @@ module Lesson
     ( lessonSummary
     ) where
 
-data Flashcard = Flashcard String String
+data Flashcard =
+  Flashcard
+  { front :: String
+  , back  :: String
+  }
 
 flashcards :: [Flashcard]
 flashcards = [flashcard1, flashcard2]
@@ -13,10 +17,10 @@ lessonSummary :: String
 lessonSummary = unlines (map showFlashcard flashcards)
 
 showFlashcard :: Flashcard -> String
-showFlashcard (Flashcard a b) = a ++ " | " ++ b
+showFlashcard card = (front card) ++ " | " ++ (back card)
 
 flashcard1 :: Flashcard
-flashcard1 = (Flashcard "the" "le/la")
+flashcard1 = Flashcard {front = "the", back = "le/la"}
 
 flashcard2 :: Flashcard
-flashcard2 = (Flashcard "a" "un/une")
+flashcard2 = Flashcard {front = "a", back = "un/une"}
