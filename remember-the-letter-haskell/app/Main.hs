@@ -3,6 +3,7 @@ module Main where
 import Lib (welcome)
 import Lesson
 import System.IO
+import System.Exit
 
 
 -- | list of flashcards for running the program
@@ -24,6 +25,7 @@ main =
   putStrLn "Enter 'a' to show both front and back of each card."
   putStrLn "Enter 'f' to show the front of each card."
   putStrLn "Enter 'b' to show the back of each card."
+  putStrLn "Enter 'x' to exit the application."
   putStrLn "" -- blank line
   putStr  "> " -- terminal prompt to show the user
   hFlush stdout  -- We need to flush standard out
@@ -48,4 +50,8 @@ main =
         putStrLn "Print only backs of each card:"
         putStrLn (backSummary flashcards)
       else
-        putStrLn ("Unrecognized input: (" ++ userInput ++ ")")
+        if userInput == "x"
+        then
+          exitSuccess
+        else
+          putStrLn ("Unrecognized input: (" ++ userInput ++ ")")
