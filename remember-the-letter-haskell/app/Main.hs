@@ -5,26 +5,39 @@ import System.IO
 import System.Exit
 
 
--- | list of flashcards for running the program
-flashcards :: [Flashcard]
-flashcards = [flashcard1, flashcard2]
-
-flashcard1 :: Flashcard
-flashcard1 = Flashcard {front = "the", back = "le/la"}
-
-flashcard2 :: Flashcard
-flashcard2 = Flashcard {front = "a", back = "un/une"}
-
 -- | This program runs in the terminal. It outputs
 -- text to the student.
 main :: IO ()
 main =
   do
   putStrLn "Welcome to Remember the Letter (Haskell)"
-  commandLineLoop
+  putStrLn ""
+  putStrLn "Enter 'open' if you want to open a lesson file"
+  putStrLn "Enter 'n' if you want to create a new lesson."
+  putStrLn ""
+  putStr "> "
+  hFlush stdout
 
-commandLineLoop :: IO ()
-commandLineLoop =
+  userInput <- getLine
+  case
+    userInput
+    of "open"  ->
+               do
+               putStrLn "Enter a name for a file to open:"
+               putStr  "> "
+               hFlush stdout
+               fileName <- getLine
+               fileContents <- readFile fileName
+               flashcards' <- return (tabSeparatedValuesToLesson fileContents)
+               commandLineLoop flashcards'
+               return ()
+       _       ->
+               do
+               commandLineLoop []
+
+
+commandLineLoop :: [Flashcard] -> IO ()
+commandLineLoop flashcards =
   do
   putStrLn "Enter 'a' to show both front and back of each card."
   putStrLn "Enter 'f' to show the front of each card."
@@ -65,4 +78,4 @@ commandLineLoop =
               putStrLn ("Done writing to file named " ++ fileName)
        "x"    ->  exitSuccess
        _      ->  putStrLn ("Unrecognized input: (" ++ userInput ++ ")")
-  commandLineLoop  -- loop (go back to the beginning)
+  commandLineLoop flashcards -- loop (go back to the beginning)

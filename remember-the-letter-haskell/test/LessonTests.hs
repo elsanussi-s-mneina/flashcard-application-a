@@ -50,6 +50,32 @@ lessonSpecs =
       tabSeparatedValuesOfFlashcard (Flashcard "turtle" "fox")
       `shouldBe`
       "turtle\tfox\n"
+
+  describe "tabSeparatedValuesToFlashcard" $ do
+    it ("should return a flashcard with turtle on the front side " ++
+        "and fox on the back side " ++
+        "when given turtle then a tab then fox then a new line.") $ do
+          (tabSeparatedValuesToFlashcard "turtle\tfox\n")
+            `shouldBe`
+            (Flashcard "turtle" "fox")
+    it ("should return a flashcard with rabbit on the front side " ++
+        "and snail on the back side " ++
+        "when given rabbit then a tab then snail then a new line") $ do
+          (showFlashcard $  (tabSeparatedValuesToFlashcard "rabbit\tsnail\n"))
+            `shouldBe`
+            "rabbit | snail"
+    it ("should not crash when given rabbit then a new line, " ++
+        "it should just set the back to blank, " ++
+        "and the front to \"rabbit\".") $ do
+          (showFlashcard (tabSeparatedValuesToFlashcard "rabbit\n"))
+            `shouldBe`
+            "rabbit | "
+  describe "tabSeparatedValuesToLesson" $ do
+    it ("should give an empty list when given an empty string") $ do
+      (tabSeparatedValuesToLesson "") `shouldBe` []
+    it ("should give an 3 element list when given 3 lines") $ do
+       length (tabSeparatedValuesToLesson "a\tb\nc\td\ne\tf\n")
+       `shouldBe` 3
   describe "tabSeparatedValuesOfLesson" $ do
     it ("should return an empty string when given an empty list") $ do
       tabSeparatedValuesOfLesson [] `shouldBe` ""

@@ -11,7 +11,7 @@ data Flashcard =
   Flashcard
   { front :: String
   , back  :: String
-  }
+  } deriving (Eq, Show)
 
 
 
@@ -47,7 +47,22 @@ showFlashcardBack card = back card
 tabSeparatedValuesOfFlashcard :: Flashcard -> String
 tabSeparatedValuesOfFlashcard (Flashcard f b) = f ++ "\t" ++ b ++ "\n"
 
+-- | Convert tab separated values (a single line) to a flashcard.
+tabSeparatedValuesToFlashcard :: String -> Flashcard
+tabSeparatedValuesToFlashcard line =
+  let line' = filter (/= '\n') line
+      (front, backWithTabAtFront) = break (=='\t') line'
+      back = (filter (/= '\t') backWithTabAtFront)
+  in (Flashcard front back)
+  -- This should be refactored.
+
+
 -- | Convert the flashcards to a tab separated values format.
 tabSeparatedValuesOfLesson :: [Flashcard] -> String
 tabSeparatedValuesOfLesson flashcards =
   foldl (++) "" (map tabSeparatedValuesOfFlashcard flashcards)
+
+-- | Convert tab separated values (multiple lines) to flashcards.
+tabSeparatedValuesToLesson :: String -> [Flashcard]
+tabSeparatedValuesToLesson contents =
+  map tabSeparatedValuesToFlashcard (lines contents)
