@@ -22,6 +22,11 @@ main :: IO ()
 main =
   do
   welcome     -- show a welcome message.
+  commandLineLoop
+
+commandLineLoop :: IO ()
+commandLineLoop =
+  do
   putStrLn "Enter 'a' to show both front and back of each card."
   putStrLn "Enter 'f' to show the front of each card."
   putStrLn "Enter 'b' to show the back of each card."
@@ -55,3 +60,4 @@ main =
           exitSuccess
         else
           putStrLn ("Unrecognized input: (" ++ userInput ++ ")")
+  commandLineLoop  -- loop (go back to the beginning)
