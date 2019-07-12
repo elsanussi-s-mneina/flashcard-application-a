@@ -42,3 +42,12 @@ showFlashcardFront card = front card
 -- | Show the back of a single flashcard.
 showFlashcardBack :: Flashcard -> String
 showFlashcardBack card = back card
+
+-- | Convert a flashcard to tab separated values.
+tabSeparatedValuesOfFlashcard :: Flashcard -> String
+tabSeparatedValuesOfFlashcard (Flashcard f b) = f ++ "\t" ++ b ++ "\n"
+
+-- | Convert the flashcards to a tab separated values format.
+tabSeparatedValuesOfLesson :: [Flashcard] -> String
+tabSeparatedValuesOfLesson flashcards =
+  foldl (++) "" (map tabSeparatedValuesOfFlashcard flashcards)

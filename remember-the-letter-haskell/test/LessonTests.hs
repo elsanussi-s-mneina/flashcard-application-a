@@ -35,6 +35,29 @@ lessonSpecs =
       showFlashcardBack (Flashcard "" "five") `shouldBe` "five"
     it ("should return an empty string when the back side is empty") $ do
       showFlashcardBack (Flashcard "wh" "") `shouldBe` ""
+
+  describe "tabSeparatedValuesOfFlashcard" $ do
+    it ("should return tab then new line when the front side and back " ++
+        "side are empty") $ do
+      tabSeparatedValuesOfFlashcard (Flashcard "" "") `shouldBe` "\t\n"
+    it ("should return \"turtle\" then tab then new line when " ++
+        "the front side is \"turtle\" and the back side is empty") $ do
+      tabSeparatedValuesOfFlashcard (Flashcard "turtle" "")
+      `shouldBe`
+      "turtle\t\n"
+    it ("should return \"turtle\" then tab then \"fox\" then new line " ++
+        "when the front side is \"turtle\" and the back side is \"fox\".") $ do
+      tabSeparatedValuesOfFlashcard (Flashcard "turtle" "fox")
+      `shouldBe`
+      "turtle\tfox\n"
+  describe "tabSeparatedValuesOfLesson" $ do
+    it ("should return an empty string when given an empty list") $ do
+      tabSeparatedValuesOfLesson [] `shouldBe` ""
+    it ("should return three lines when given a 3-element list") $ do
+      tabSeparatedValuesOfLesson [ (Flashcard "a"   "1")
+                                 , (Flashcard "ab"  "2")
+                                 , (Flashcard "abc" "3")]
+      `shouldBe` "a\t1\nab\t2\nabc\t3\n"
   describe "frontSummary" $ do
     it ("should return an empty string when given an empty list") $ do
       frontSummary [] `shouldBe` ""

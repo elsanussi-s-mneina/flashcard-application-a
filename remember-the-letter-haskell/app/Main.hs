@@ -30,6 +30,7 @@ commandLineLoop =
   putStrLn "Enter 'a' to show both front and back of each card."
   putStrLn "Enter 'f' to show the front of each card."
   putStrLn "Enter 'b' to show the back of each card."
+  putStrLn "Enter 'save' to save all flashcards"
   putStrLn "Enter 'x' to exit the application."
   putStrLn "" -- blank line
   putStr  "> " -- terminal prompt to show the user
@@ -55,9 +56,16 @@ commandLineLoop =
         putStrLn "Print only backs of each card:"
         putStrLn (backSummary flashcards)
       else
-        if userInput == "x"
+        if userInput == "save"
         then
-          exitSuccess
+          do
+            putStrLn "Saving flashcards to file called 'Lesson.tsv'"
+            _ <- writeFile "Lesson.tsv" (tabSeparatedValuesOfLesson flashcards)
+            putStrLn "Done writing to file."
         else
-          putStrLn ("Unrecognized input: (" ++ userInput ++ ")")
+          if userInput == "x"
+          then
+            exitSuccess
+          else
+            putStrLn ("Unrecognized input: (" ++ userInput ++ ")")
   commandLineLoop  -- loop (go back to the beginning)
