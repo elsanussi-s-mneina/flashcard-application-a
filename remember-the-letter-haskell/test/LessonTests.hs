@@ -29,6 +29,12 @@ lessonSpecs =
        showFlashcardFront (Flashcard "one" "une") `shouldBe` "one"
      it ("should return \"three\" when the front side is \"three\"") $ do
        showFlashcardFront (Flashcard "three" "h") `shouldBe` "three"
+
+  describe "showFlashcardBack" $ do
+    it ("should return \"five\" when the back side is \"five\"") $ do
+      showFlashcardBack (Flashcard "" "five") `shouldBe` "five"
+    it ("should return an empty string when the back side is empty") $ do
+      showFlashcardBack (Flashcard "wh" "") `shouldBe` ""
   describe "frontSummary" $ do
     it ("should return an empty string when given an empty list") $ do
       frontSummary [] `shouldBe` ""
@@ -42,6 +48,17 @@ lessonSpecs =
       frontSummary [(Flashcard "a" "sf"), (Flashcard "b" "wh")]
       `shouldBe` "a\nb\n"
 
+  describe "backSummary" $ do
+    it ("should return an empty string when given an empty list") $ do
+      backSummary [] `shouldBe` ""
+    it ("should return red followed by a new line followed by " ++
+        "blue when given a list with two flashcards: the first one " ++
+        "with back side equal to red, " ++
+        "the second one with back side equal to blue") $ do
+      backSummary [(Flashcard "a" "red"),
+                    (Flashcard "b" "blue")]
+      `shouldBe`
+      "red\nblue\n"
   describe "lessonSummary" $ do
     it ("should,return the front side then a pipe character " ++
         " then the back side of the first card " ++

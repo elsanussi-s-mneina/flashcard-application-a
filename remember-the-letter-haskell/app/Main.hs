@@ -21,6 +21,7 @@ main =
   welcome     -- show a welcome message.
   putStrLn "Enter 'a' to show both front and back of each card."
   putStrLn "Enter 'f' to show the front of each card."
+  putStrLn "Enter 'b' to show the back of each card."
   putStrLn "" -- blank line
   userInput <- getLine
   if userInput == "a"
@@ -29,6 +30,16 @@ main =
     putStrLn "Printing Lesson summary:"
     putStrLn (lessonSummary flashcards)
   else
-    do
-    putStrLn "Print only fronts of each card:"
-    putStrLn (frontSummary flashcards)
+    if userInput == "f"
+    then
+      do
+      putStrLn "Print only fronts of each card:"
+      putStrLn (frontSummary flashcards)
+    else
+      if userInput == "b"
+      then
+        do
+        putStrLn "Print only backs of each card:"
+        putStrLn (backSummary flashcards)
+      else
+        putStrLn ("Unrecognized input: (" ++ userInput ++ ")")
