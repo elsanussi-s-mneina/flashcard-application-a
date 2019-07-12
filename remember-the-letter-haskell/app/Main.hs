@@ -1,6 +1,5 @@
 module Main where
 
-import Lib (welcome)
 import Lesson
 import System.IO
 import System.Exit
@@ -21,7 +20,7 @@ flashcard2 = Flashcard {front = "a", back = "un/une"}
 main :: IO ()
 main =
   do
-  welcome     -- show a welcome message.
+  putStrLn "Welcome to Remember the Letter (Haskell)"
   commandLineLoop
 
 commandLineLoop :: IO ()
