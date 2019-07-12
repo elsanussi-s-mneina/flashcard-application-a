@@ -38,40 +38,32 @@ commandLineLoop =
                  -- so that the terminal prompt appears
                  -- before the user input rather than after.
   userInput <- getLine
-  if userInput == "a"
-  then
-    do
-    putStrLn "Printing Lesson summary:"
-    putStrLn (lessonSummary flashcards)
-  else
-    if userInput == "f"
-    then
-      do
-      putStrLn "Print only fronts of each card:"
-      putStrLn (frontSummary flashcards)
-    else
-      if userInput == "b"
-      then
-        do
-        putStrLn "Print only backs of each card:"
-        putStrLn (backSummary flashcards)
-      else
-        if userInput == "save"
-        then
-          do
-            -- Let the user choose the file name.
-            putStrLn "Enter a name for a file to save to:"
-            putStr  "> "
-            hFlush stdout
-            fileName <- getLine
 
-            putStrLn ("Saving flashcards to file called '" ++ fileName ++ "'")
-            _ <- writeFile fileName (tabSeparatedValuesOfLesson flashcards)
-            putStrLn ("Done writing to file named " ++ fileName)
-        else
-          if userInput == "x"
-          then
-            exitSuccess
-          else
-            putStrLn ("Unrecognized input: (" ++ userInput ++ ")")
+  case
+    userInput
+    of "a"    ->
+              do
+              putStrLn "Printing Lesson summary:"
+              putStrLn (lessonSummary flashcards)
+       "f"    ->
+              do
+              putStrLn "Print only fronts of each card:"
+              putStrLn (frontSummary flashcards)
+       "b"    ->
+              do
+              putStrLn "Print only backs of each card:"
+              putStrLn (backSummary flashcards)
+       "save" ->
+              do
+              -- Let the user choose the file name.
+              putStrLn "Enter a name for a file to save to:"
+              putStr  "> "
+              hFlush stdout
+              fileName <- getLine
+
+              putStrLn ("Saving flashcards to file called '" ++ fileName ++ "'")
+              _ <- writeFile fileName (tabSeparatedValuesOfLesson flashcards)
+              putStrLn ("Done writing to file named " ++ fileName)
+       "x"    ->  exitSuccess
+       _      ->  putStrLn ("Unrecognized input: (" ++ userInput ++ ")")
   commandLineLoop  -- loop (go back to the beginning)
