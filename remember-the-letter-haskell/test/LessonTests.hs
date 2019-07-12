@@ -37,7 +37,8 @@ lessonSpecs =
       frontSummary [(Flashcard "one" "une")] `shouldBe` "one\n"
     it ("should return \"a\" followed by a new line " ++
         "followed by a \"b\" followed by a new line when given a " ++
-        "list with a single flashcard whose front side is \"one\" ") $ do
+        "list with a two flashcards the first one with front side is \"a\" " ++
+        "the second one with fornt side \"b\"") $ do
       frontSummary [(Flashcard "a" "sf"), (Flashcard "b" "wh")]
       `shouldBe` "a\nb\n"
 
