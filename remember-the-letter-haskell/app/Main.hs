@@ -59,9 +59,15 @@ commandLineLoop =
         if userInput == "save"
         then
           do
-            putStrLn "Saving flashcards to file called 'Lesson.tsv'"
-            _ <- writeFile "Lesson.tsv" (tabSeparatedValuesOfLesson flashcards)
-            putStrLn "Done writing to file."
+            -- Let the user choose the file name.
+            putStrLn "Enter a name for a file to save to:"
+            putStr  "> "
+            hFlush stdout
+            fileName <- getLine
+
+            putStrLn ("Saving flashcards to file called '" ++ fileName ++ "'")
+            _ <- writeFile fileName (tabSeparatedValuesOfLesson flashcards)
+            putStrLn ("Done writing to file named " ++ fileName)
         else
           if userInput == "x"
           then
