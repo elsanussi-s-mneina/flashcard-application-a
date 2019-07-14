@@ -33,15 +33,15 @@ backSummary flashcards = unlines (map showFlashcardBack flashcards)
 
 -- | The front and back of a single flashcard.
 showFlashcard :: Flashcard -> String
-showFlashcard card = (front card) ++ " | " ++ (back card)
+showFlashcard card = front card ++ " | " ++ back card
 
 -- | Show the front of a single flashcard.
 showFlashcardFront :: Flashcard -> String
-showFlashcardFront card = front card
+showFlashcardFront = front
 
 -- | Show the back of a single flashcard.
 showFlashcardBack :: Flashcard -> String
-showFlashcardBack card = back card
+showFlashcardBack = back
 
 -- | Convert a flashcard to tab separated values.
 tabSeparatedValuesOfFlashcard :: Flashcard -> String
@@ -52,15 +52,15 @@ tabSeparatedValuesToFlashcard :: String -> Flashcard
 tabSeparatedValuesToFlashcard line =
   let line' = filter (/= '\n') line
       (front, backWithTabAtFront) = break (=='\t') line'
-      back = (filter (/= '\t') backWithTabAtFront)
-  in (Flashcard front back)
+      back = filter (/= '\t') backWithTabAtFront
+  in Flashcard front back
   -- This should be refactored.
 
 
 -- | Convert the flashcards to a tab separated values format.
 tabSeparatedValuesOfLesson :: [Flashcard] -> String
-tabSeparatedValuesOfLesson flashcards =
-  foldl (++) "" (map tabSeparatedValuesOfFlashcard flashcards)
+tabSeparatedValuesOfLesson =
+  concatMap tabSeparatedValuesOfFlashcard
 
 -- | Convert tab separated values (multiple lines) to flashcards.
 tabSeparatedValuesToLesson :: String -> [Flashcard]

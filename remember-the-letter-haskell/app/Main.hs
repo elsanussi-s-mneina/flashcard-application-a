@@ -13,8 +13,7 @@ main =
   putStrLn "Welcome to Remember the Letter (Haskell)"
   putStrLn ""
   putStrLn "Enter 'open' if you want to open a lesson file"
-  putStrLn "Enter 'n' if you want to create a new lesson."
-  putStrLn ""
+  putStrLn "Enter 'n' if you want to create a new lesson.\n"
   printPrompt
 
   userInput <- getLine
@@ -26,11 +25,10 @@ main =
                printPrompt
                fileName <- getLine
                fileContents <- readFile fileName
-               flashcards' <- return (tabSeparatedValuesToLesson fileContents)
+               let flashcards' = tabSeparatedValuesToLesson fileContents
                commandLineLoop flashcards'
                return ()
        _       ->
-               do
                commandLineLoop []
 
 
