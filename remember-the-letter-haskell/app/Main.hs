@@ -15,8 +15,7 @@ main =
   putStrLn "Enter 'open' if you want to open a lesson file"
   putStrLn "Enter 'n' if you want to create a new lesson."
   putStrLn ""
-  putStr "> "
-  hFlush stdout
+  printPrompt
 
   userInput <- getLine
   case
@@ -24,8 +23,7 @@ main =
     of "open"  ->
                do
                putStrLn "Enter a name for a file to open:"
-               putStr  "> "
-               hFlush stdout
+               printPrompt
                fileName <- getLine
                fileContents <- readFile fileName
                flashcards' <- return (tabSeparatedValuesToLesson fileContents)
@@ -45,10 +43,7 @@ commandLineLoop flashcards =
   putStrLn "Enter 'save' to save all flashcards"
   putStrLn "Enter 'x' to exit the application."
   putStrLn "" -- blank line
-  putStr  "> " -- terminal prompt to show the user
-  hFlush stdout  -- We need to flush standard out
-                 -- so that the terminal prompt appears
-                 -- before the user input rather than after.
+  printPrompt
   userInput <- getLine
 
   case
@@ -69,8 +64,7 @@ commandLineLoop flashcards =
               do
               -- Let the user choose the file name.
               putStrLn "Enter a name for a file to save to:"
-              putStr  "> "
-              hFlush stdout
+              printPrompt
               fileName <- getLine
 
               putStrLn ("Saving flashcards to file called '" ++ fileName ++ "'")
@@ -79,3 +73,12 @@ commandLineLoop flashcards =
        "x"    ->  exitSuccess
        _      ->  putStrLn ("Unrecognized input: (" ++ userInput ++ ")")
   commandLineLoop flashcards -- loop (go back to the beginning)
+
+printPrompt :: IO ()
+printPrompt =
+  do
+  putStr  "> "  -- terminal prompt to show the user
+  hFlush stdout -- We need to flush standard out
+                -- so that the terminal prompt appears
+                -- before the user input rather than after.
+     
