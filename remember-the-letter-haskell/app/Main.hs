@@ -62,13 +62,13 @@ commandLineLoop flashcards =
        "add"  ->
               do
               putStrLn "Adding a flashcard..."
-              putStr "Enter the front side >"
-              hFlush stdout
+              putStr "Enter the front side "
+              printPrompt
               fSide <- getLine
               putStrLn ("You entered the following for the front side: (" ++
                          fSide ++ ")")
-              putStr "Enter the back side >"
-              hFlush stdout
+              putStr "Enter the back side "
+              printPrompt
               bSide  <- getLine
               putStrLn ("You entered the following for the back side: (" ++
                          bSide ++ ")")
