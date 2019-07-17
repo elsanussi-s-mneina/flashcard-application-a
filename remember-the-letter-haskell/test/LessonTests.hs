@@ -121,3 +121,14 @@ lessonSpecs =
                       (Flashcard "c" "C")]
        `shouldBe`
         "a | A\nb | B\nc | C\n"
+  describe "addFlashcardToLesson" $ do
+    it "should return a list with one more flashcard" $ do
+      length $ addFlashcardToLesson [(Flashcard "a" "b")] "c" "d"
+      `shouldBe` 2
+    it ("should return a list with the flashcard" ++
+        " at the end of the original list") $ do
+      addFlashcardToLesson [(Flashcard "x" "y"), (Flashcard "b" "c")]
+                            "r" "s"
+      `shouldBe`           [(Flashcard "x" "y"),
+                            (Flashcard "b" "c"),
+                            (Flashcard "r" "s")]

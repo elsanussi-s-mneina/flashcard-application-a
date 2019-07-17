@@ -14,6 +14,11 @@ data Flashcard =
   } deriving (Eq, Show)
 
 
+-- | Add a flashcard to a lesson.
+-- | Works by returning the lesson with the new flashcard added.
+addFlashcardToLesson :: [Flashcard] -> String -> String -> [Flashcard]
+addFlashcardToLesson flashcards front back =
+  flashcards ++ [(Flashcard front back)]
 
 -- | The front and backs of every flashcard in a given list.
 lessonSummary :: [Flashcard] -> String

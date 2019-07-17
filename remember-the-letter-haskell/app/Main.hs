@@ -38,6 +38,7 @@ commandLineLoop flashcards =
   putStrLn "Enter 'a' to show both front and back of each card."
   putStrLn "Enter 'f' to show the front of each card."
   putStrLn "Enter 'b' to show the back of each card."
+  putStrLn "Enter 'add' to add a flashcard."
   putStrLn "Enter 'save' to save all flashcards"
   putStrLn "Enter 'x' to exit the application."
   putStrLn "" -- blank line
@@ -58,6 +59,23 @@ commandLineLoop flashcards =
               do
               putStrLn "Print only backs of each card:"
               putStrLn (backSummary flashcards)
+       "add"  ->
+              do
+              putStrLn "Adding a flashcard..."
+              putStr "Enter the front side >"
+              hFlush stdout
+              fSide <- getLine
+              putStrLn ("You entered the following for the front side: (" ++
+                         fSide ++ ")")
+              putStr "Enter the back side >"
+              hFlush stdout
+              bSide  <- getLine
+              putStrLn ("You entered the following for the back side: (" ++
+                         bSide ++ ")")
+              flashcards' <- return (addFlashcardToLesson
+                                       flashcards fSide bSide)
+              putStrLn "Done adding flashcard."
+              commandLineLoop flashcards' -- loop (go back to the beginning)
        "save" ->
               do
               -- Let the user choose the file name.
@@ -79,4 +97,3 @@ printPrompt =
   hFlush stdout -- We need to flush standard out
                 -- so that the terminal prompt appears
                 -- before the user input rather than after.
-     
