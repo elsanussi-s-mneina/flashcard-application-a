@@ -7,14 +7,13 @@ module LessonTests (lessonSpecs) where
 
 import Prelude (($), (++), length)
 
-import Test.Hspec(describe, it, shouldBe, Spec)
+import Test.Hspec (describe, it, shouldBe, Spec)
 import Lesson (addFlashcardToLesson, backSummary,
                Flashcard(Flashcard, back, front),
                frontSummary, lessonSummary,
                showFlashcard, showFlashcardBack, showFlashcardFront,
                tabSeparatedValuesOfFlashcard, tabSeparatedValuesOfLesson,
-               tabSeparatedValuesToFlashcard, tabSeparatedValuesToLesson
-              )
+               tabSeparatedValuesToFlashcard, tabSeparatedValuesToLesson)
 
 flashcards :: [Flashcard]
 flashcards = [flashcard1, flashcard2]
