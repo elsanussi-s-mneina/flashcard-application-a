@@ -1,8 +1,12 @@
-module Main where
+module Main (main) where
 
-import Lesson
-import System.IO
-import System.Exit
+import Prelude ((++), getLine, IO, putStr, putStrLn, return)
+
+import Lesson (addFlashcardToLesson, backSummary, Flashcard,  frontSummary,
+               lessonSummary, tabSeparatedValuesOfLesson,
+               tabSeparatedValuesToLesson)
+import System.IO (hFlush, readFile, stdout, writeFile)
+import System.Exit (exitSuccess)
 
 
 -- | This program runs in the terminal. It outputs

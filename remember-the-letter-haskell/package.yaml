@@ -34,6 +34,9 @@ executables:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    - -Weverything
+    - -Werror
+    - -Wno-safe
     dependencies:
     - remember-the-letter-haskell
 
@@ -45,5 +48,9 @@ tests:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    - -Weverything
+    - -Werror
+    - -Wno-safe
+    - -Wno-unsafe
     dependencies:
     - remember-the-letter-haskell
