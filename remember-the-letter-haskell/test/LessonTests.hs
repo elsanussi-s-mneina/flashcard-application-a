@@ -13,7 +13,8 @@ import Lesson (addFlashcardToLesson, backSummary,
                frontSummary, lessonSummary,
                showFlashcard, showFlashcardBack, showFlashcardFront,
                tabSeparatedValuesOfFlashcard, tabSeparatedValuesOfLesson,
-               tabSeparatedValuesToFlashcard, tabSeparatedValuesToLesson)
+               tabSeparatedValuesToFlashcard, tabSeparatedValuesToLesson,
+               presentBackOfFlashcard, presentFrontOfFlashcard)
 
 flashcards :: [Flashcard]
 flashcards = [flashcard1, flashcard2]
@@ -139,3 +140,10 @@ lessonSpecs =
       `shouldBe`           [(Flashcard "x" "y"),
                             (Flashcard "b" "c"),
                             (Flashcard "r" "s")]
+  describe "presentBackOfFlashcard" $ do
+    it "should show the back of a flashcard in context" $ do
+      presentBackOfFlashcard (Flashcard "f23" "1234b") `shouldBe` "I am showing you the back of a flashcard.\nYou see \"1234b\""
+      presentBackOfFlashcard (Flashcard "zzz" "321n8 s") `shouldBe` "I am showing you the back of a flashcard.\nYou see \"321n8 s\""
+    it "should show the front of a flashcard in context" $ do
+      presentFrontOfFlashcard (Flashcard "f23" "1234b") `shouldBe` "I am showing you the front of a flashcard.\nYou see \"f23\""
+      presentFrontOfFlashcard (Flashcard "zzz" "321n8 s") `shouldBe` "I am showing you the front of a flashcard.\nYou see \"zzz\""

@@ -6,6 +6,7 @@ Description : A lesson consists of flashcard data, and related functions.
 
 module Lesson where
 
+
 -- | A flashcard has a front side, and a back side.
 data Flashcard =
   Flashcard
@@ -71,3 +72,19 @@ tabSeparatedValuesOfLesson =
 tabSeparatedValuesToLesson :: String -> [Flashcard]
 tabSeparatedValuesToLesson contents =
   map tabSeparatedValuesToFlashcard (lines contents)
+
+-- | surrounding a string with double quotes
+doubleQuote :: String -> String
+doubleQuote s = "\"" ++ s ++ "\""
+
+presentBackOfFlashcard :: Flashcard -> String
+presentBackOfFlashcard fla = "I am showing you the back of a flashcard.\nYou see " ++ doubleQuote (showFlashcardBack fla)
+
+presentFrontOfFlashcard :: Flashcard -> String
+presentFrontOfFlashcard fla = "I am showing you the front of a flashcard.\nYou see " ++ doubleQuote (showFlashcardFront fla)
+
+checkUserAttemptToProvideBack :: Flashcard -> String -> Bool
+checkUserAttemptToProvideBack fla userAttempt = userAttempt == back fla
+
+checkUserAttemptToProvideFront :: Flashcard -> String -> Bool
+checkUserAttemptToProvideFront fla userAttempt = userAttempt == front fla

@@ -1,10 +1,10 @@
 module Main (main) where
 
-import Prelude ((++), getLine, IO, putStr, putStrLn, return)
+import Prelude (IO, (++), (>), getLine, head, length, putStr, putStrLn, return)
 
-import Lesson (addFlashcardToLesson, backSummary, Flashcard,  frontSummary,
+import Lesson (addFlashcardToLesson, backSummary, Flashcard, frontSummary,
                lessonSummary, tabSeparatedValuesOfLesson,
-               tabSeparatedValuesToLesson)
+               tabSeparatedValuesToLesson, checkUserAttemptToProvideBack, presentFrontOfFlashcard)
 import System.IO (hFlush, readFile, stdout, writeFile)
 import System.Exit (exitSuccess)
 
@@ -44,6 +44,11 @@ commandLineLoop flashcards =
   putStrLn "Enter 'b' to show the back of each card."
   putStrLn "Enter 'add' to add a flashcard."
   putStrLn "Enter 'save' to save all flashcards"
+
+  if length flashcards > 0
+  then putStrLn "Enter 'start quiz' to start a quiz"
+  else return ()
+
   putStrLn "Enter 'x' to exit the application."
   putStrLn "" -- blank line
   printPrompt
@@ -80,6 +85,18 @@ commandLineLoop flashcards =
                                        flashcards fSide bSide)
               putStrLn "Done adding flashcard."
               commandLineLoop flashcards' -- loop (go back to the beginning)
+       "start quiz" 
+              ->
+              do
+              putStrLn (presentFrontOfFlashcard (head flashcards))
+              putStrLn "What is its back side?"
+              printPrompt
+              userAttempt <- getLine
+              putStrLn (if checkUserAttemptToProvideBack (head flashcards) userAttempt
+                        then "Correct!"
+                        else "Incorrect!"
+                       )
+              putStrLn "Sorry, a quiz with more than one card, is not implemented yet!"
        "save" ->
               do
               -- Let the user choose the file name.
