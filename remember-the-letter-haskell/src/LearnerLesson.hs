@@ -17,3 +17,7 @@ data LearnerFlashcard = LearnerFlashcard
 learnerAnswersCorrectly :: LearnerFlashcard -> LearnerFlashcard
 learnerAnswersCorrectly (LearnerFlashcard {flashcard = f, correctCount = cc, attemptCount = ac}) = 
   LearnerFlashcard {flashcard =  f, correctCount = 1 + cc, attemptCount = 1 + ac}
+
+learnerAnswersIncorrectly :: LearnerFlashcard -> LearnerFlashcard
+learnerAnswersIncorrectly (LearnerFlashcard {flashcard = f, correctCount = cc, attemptCount = ac}) = 
+  LearnerFlashcard {flashcard =  f, correctCount = cc, attemptCount = ac + 1}

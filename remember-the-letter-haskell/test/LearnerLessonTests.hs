@@ -9,7 +9,7 @@ import Prelude (($), (++) )
 
 import Test.Hspec (describe, it, shouldBe, Spec)
 import LearnerLesson 
-  (LearnerFlashcard(LearnerFlashcard), learnerAnswersCorrectly)
+  (LearnerFlashcard(LearnerFlashcard), learnerAnswersCorrectly, learnerAnswersIncorrectly)
 
 import Lesson (Flashcard(Flashcard), front, back)
 
@@ -21,10 +21,15 @@ learnerLessonSpecs :: Spec
 learnerLessonSpecs =
   do
   describe "learnerAnswersCorrectly" $ do
-    it ("should return the with a greater number of correct answers (greater by 1) "
-        ++ " and one greater number of total attempts ") $ do
+    it ("should return the flashcard with a greater number of correct answers (greater by 1) "
+        ++ "and one greater number of total attempts ") $ do
       learnerAnswersCorrectly (LearnerFlashcard flashcard1 0 2) `shouldBe` (LearnerFlashcard flashcard1 1 3)
       learnerAnswersCorrectly (LearnerFlashcard flashcard1 1 4) `shouldBe` (LearnerFlashcard flashcard1 2 5)
       learnerAnswersCorrectly (LearnerFlashcard flashcard1 35 40) `shouldBe` (LearnerFlashcard flashcard1 36 41)
-
+  describe "learnerAnswersIncorrectly" $ do
+    it ("should return the flashcard with the same number of correct answers, " 
+        ++ "but with a number of attempts greater by 1.") $ do
+      learnerAnswersIncorrectly (LearnerFlashcard flashcard1 0 2) `shouldBe` (LearnerFlashcard flashcard1 0 3)
+      learnerAnswersIncorrectly (LearnerFlashcard flashcard1 9 18) `shouldBe` (LearnerFlashcard flashcard1 9 19)
+      learnerAnswersIncorrectly (LearnerFlashcard flashcard1 83 100) `shouldBe` (LearnerFlashcard flashcard1 83 101)
 
