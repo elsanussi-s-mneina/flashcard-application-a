@@ -5,7 +5,11 @@ Description : Automated test entry-point.
 
 import Prelude (IO)
 import LessonTests (lessonSpecs)
+import LearnerLessonTests (learnerLessonSpecs)
 import Test.Hspec (hspec)
 
 main :: IO ()
-main = hspec lessonSpecs
+main = 
+  do
+  hspec lessonSpecs
+  hspec learnerLessonSpecs
