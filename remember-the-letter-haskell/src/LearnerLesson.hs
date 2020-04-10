@@ -9,10 +9,11 @@ import Lesson(Flashcard(Flashcard), back, front)
 -- A flashcard with user specific information.
 data LearnerFlashcard = LearnerFlashcard
   { flashcard :: Flashcard
-  , score :: Int
+  , correctCount :: Int
+  , attemptCount :: Int
   } 
   deriving (Show, Eq)
 
 learnerAnswersCorrectly :: LearnerFlashcard -> LearnerFlashcard
-learnerAnswersCorrectly (LearnerFlashcard {flashcard = flashcard, score = score}) = 
-  LearnerFlashcard {flashcard =  flashcard, score = 1 + score}
+learnerAnswersCorrectly (LearnerFlashcard {flashcard = f, correctCount = cc, attemptCount = ac}) = 
+  LearnerFlashcard {flashcard =  f, correctCount = 1 + cc, attemptCount = 1 + ac}
