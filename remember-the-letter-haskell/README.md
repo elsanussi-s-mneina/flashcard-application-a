@@ -14,3 +14,13 @@ $ stack run
 To run the tests. Type the following in your terminal.
 
 $ stack test
+
+
+
+## Generating the documentation
+To generate the documentation. Enter the following command in your terminal:
+
+stack haddock --open remember-the-letter-haskell
+
+
+
