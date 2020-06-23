@@ -1,3 +1,6 @@
 .stack-work/
 remember-the-letter-haskell.cabal
 *~
+out/
+.idea/
+remember-the-letter-haskell.iml
