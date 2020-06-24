@@ -60,32 +60,40 @@ showFlashcardBack = back
 tabSeparatedValuesOfFlashcard :: Flashcard -- ^ a flashcard
                               -> String    -- ^ a line of text containing the front of the flashcard, then
                                            --   a tab character, then the back of the flashcard, and then
-                                           --   a new line character.   
+                                           --   a new line character.
 tabSeparatedValuesOfFlashcard (Flashcard f b) = f ++ "\t" ++ b ++ "\n"
 
 -- | Convert tab separated values (a single line) to a flashcard.
-tabSeparatedValuesToFlashcard :: String -- ^ a line of text containing the front of a flashcard,     
+tabSeparatedValuesToFlashcard :: String -- ^ a line of text containing the front of a flashcard,
                                         --   then a tab character, then the back of the flashcard,
                                         --   then a new line character.
                               -> Flashcard -- ^ a flashcard
 tabSeparatedValuesToFlashcard line =
   let line' = filter (/= '\n') line
-      (front, backWithTabAtFront) = break (=='\t') line'
-      back = filter (/= '\t') backWithTabAtFront
+      (front, back) = splitOn '\t' line'
   in Flashcard front back
-  -- This should be refactored.
+
+-- | Given a separation character, and text, it splits it into
+--   two pieces at the separation character. The separation character
+--   is not included in the parts.
+splitOn :: Char             -- ^ separation character
+        -> String           -- ^ text (likely with separation character in the middle)
+        -> (String, String) -- ^ the front of the card then the back of the card (in a tuple)
+splitOn character text =
+  let (ff, backWithTab) =  break (== character) text
+  in (ff, filter (/= character) backWithTab)
 
 
 -- | Convert the flashcards to a tab separated values format.
 tabSeparatedValuesOfLesson :: [Flashcard] -- ^  list of flashcards
                            -> String      -- ^  plain text containing details of every flashcard
-                                          --    on a separate line, in tab separated values format.  
+                                          --    on a separate line, in tab separated values format.
 tabSeparatedValuesOfLesson =
   concatMap tabSeparatedValuesOfFlashcard
 
 -- | Convert tab separated values (multiple lines) to flashcards.
 tabSeparatedValuesToLesson :: String      -- ^ plain text containing details of every flashcard on a separate line,
---                                        --   in tab separated values format.
+                                          --   in tab separated values format.
                            -> [Flashcard] -- ^ a list of flashcards
 tabSeparatedValuesToLesson contents =
   map tabSeparatedValuesToFlashcard (lines contents)
@@ -97,12 +105,12 @@ doubleQuote s = "\"" ++ s ++ "\""
 
 presentBackOfFlashcard :: Flashcard -- ^ a flashcard
                        -> String    -- ^ text declaring the back of a flashcard to the user,
-                                    --   in a clear manner.  
+                                    --   in a clear manner.
 presentBackOfFlashcard fla = "I am showing you the back of a flashcard.\nYou see " ++ doubleQuote (showFlashcardBack fla)
 
 presentFrontOfFlashcard :: Flashcard -- ^ a flashcard
                         -> String    -- ^ text declaring the front of a flashcard to the user,
-                                     --   in a clear manner.     
+                                     --   in a clear manner.
 presentFrontOfFlashcard fla = "I am showing you the front of a flashcard.\nYou see " ++ doubleQuote (showFlashcardFront fla)
 
 checkUserAttemptToProvideBack :: Flashcard -- ^ a flashcard
