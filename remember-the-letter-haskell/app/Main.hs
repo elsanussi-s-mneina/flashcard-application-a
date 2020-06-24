@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Prelude (IO, (++), getLine, head, putStr, putStrLn, return, null)
+import Prelude (IO, String, ($), (++), (==), getLine, head, putStr, putStrLn, return, null)
 
 import Lesson (addFlashcardToLesson, backSummary, Flashcard, frontSummary,
                lessonSummary, tabSeparatedValuesOfLesson,
@@ -8,24 +8,67 @@ import Lesson (addFlashcardToLesson, backSummary, Flashcard, frontSummary,
 import System.IO (hFlush, readFile, stdout, writeFile)
 import System.Exit (exitSuccess)
 import Control.Monad (unless)
+import LanguageUserInterface
+  ( welcomeToProgramUIText
+  , printingLessonSummaryHeaderUIText
+  , openLessonFileMenuItemShortcutUIText
+  , openLessonFileMenuItemUIText
+  -- , createLessonFileMenuItemShortcutUIText
+  , createLessonFileMenuItemUIText
+  , fileNamePromptAtFileOpeningUIText
+  , showFrontAndBackMenuItemUIText
+  , showFrontAndBackMenuItemShortcutUIText
+  , showFrontMenuItemUIText
+  , showFrontMenuItemShortcutUIText
+  , showBackMenuItemUIText
+  , showBackMenuItemShortcutUIText
+  , addMenuItemUIText
+  , addMenuItemShortcutUIText
+  , saveMenuItemUIText
+  , saveMenuItemShortcutUIText
+  , startQuizMenuItemUIText
+  , startQuizMenuItemShortcutUIText
+  , exitMenuItemShortcutUIText
+  , exitMenuItemUIText
+  , printFrontsHeaderUIText
+  , printBacksHeaderUIText
+  , addingFlashcardHeaderUIText
+  , enterFrontSidePromptUIText
+  , enterBackSidePromptUIText
+  , doneAddingFlashcardMessageUIText
+  , backSideQuizPromptUIText
+  , correctAnswerMessageUIText
+  , incorrectAnswerMessageUIText
+  , enterFrontSideAcknowledgementUIText
+  , enterBackSideAcknowledgementUIText
+  , multipleCardQuizNotImplementedMessageUIText
+  , nameOfFileToSavePromptUIText
+  , savingFlashcardsMessageUIText
+  , doneSavingFileMessageUIText
+  , unrecognizedInputMessageUIText
+  )
+
+lang :: String
+lang = "en"
 
 -- | This program runs in the terminal. It outputs
 -- text to the student.
 main :: IO ()
 main =
   do
-  putStrLn "Welcome to Remember the Letter (Haskell)"
+  putStrLn $ welcomeToProgramUIText lang
   putStrLn ""
-  putStrLn "Enter 'open' if you want to open a lesson file"
-  putStrLn "Enter 'n' if you want to create a new lesson.\n"
+  putStrLn $ openLessonFileMenuItemUIText lang
+  putStrLn $ createLessonFileMenuItemUIText lang
   printPrompt
 
   userInput <- getLine
   case
     userInput
-    of "open"  ->
+    of _ | userInput == openLessonFileMenuItemShortcutUIText lang
+               ->
                do
-               putStrLn "Enter a name for a file to open:"
+               putStrLn $ fileNamePromptAtFileOpeningUIText lang
                printPrompt
                fileName <- getLine
                fileContents <- readFile fileName
@@ -39,73 +82,78 @@ main =
 commandLineLoop :: [Flashcard] -> IO ()
 commandLineLoop flashcards =
   do
-  putStrLn "Enter 'a' to show both front and back of each card."
-  putStrLn "Enter 'f' to show the front of each card."
-  putStrLn "Enter 'b' to show the back of each card."
-  putStrLn "Enter 'add' to add a flashcard."
-  putStrLn "Enter 'save' to save all flashcards"
+  putStrLn $ showFrontAndBackMenuItemUIText lang
+  putStrLn $ showFrontMenuItemUIText lang
+  putStrLn $ showBackMenuItemUIText lang
+  putStrLn $ addMenuItemUIText lang
+  putStrLn $ saveMenuItemUIText lang
 
-  unless (null flashcards) (putStrLn "Enter 'start quiz' to start a quiz")
+  unless (null flashcards) (putStrLn $ startQuizMenuItemUIText lang)
 
-  putStrLn "Enter 'x' to exit the application."
+  putStrLn $ exitMenuItemUIText lang
   putStrLn "" -- blank line
   printPrompt
   userInput <- getLine
 
   case
     userInput
-    of "a"    ->
+    of _ | userInput == showFrontAndBackMenuItemShortcutUIText lang
+              ->
               do
-              putStrLn "Printing Lesson summary:"
+              putStrLn $ printingLessonSummaryHeaderUIText lang
               putStrLn (lessonSummary flashcards)
-       "f"    ->
+       _ | userInput == showFrontMenuItemShortcutUIText lang
+              ->
               do
-              putStrLn "Print only fronts of each card:"
+              putStrLn $ printFrontsHeaderUIText lang
               putStrLn (frontSummary flashcards)
-       "b"    ->
+       _ | userInput == showBackMenuItemShortcutUIText lang
+              ->
               do
-              putStrLn "Print only backs of each card:"
+              putStrLn $ printBacksHeaderUIText lang
               putStrLn (backSummary flashcards)
-       "add"  ->
+       _ | userInput == addMenuItemShortcutUIText lang
+              ->
               do
-              putStrLn "Adding a flashcard..."
-              putStrLn "Enter the front side:"
+              putStrLn $ addingFlashcardHeaderUIText lang
+              putStrLn $ enterFrontSidePromptUIText lang
               printPrompt
               fSide <- getLine
-              putStrLn ("You entered the following for the front side: (" ++
+              putStrLn (enterFrontSideAcknowledgementUIText lang ++ " (" ++
                          fSide ++ ")")
-              putStrLn "Enter the back side:"
+              putStrLn $ enterBackSidePromptUIText lang
               printPrompt
               bSide  <- getLine
-              putStrLn ("You entered the following for the back side: (" ++
+              putStrLn (enterBackSideAcknowledgementUIText lang ++ " (" ++
                          bSide ++ ")")
               let flashcards' = addFlashcardToLesson flashcards fSide bSide
-              putStrLn "Done adding flashcard."
+              putStrLn $ doneAddingFlashcardMessageUIText lang
               commandLineLoop flashcards' -- loop (go back to the beginning)
-       "start quiz" 
+       _ | userInput == startQuizMenuItemShortcutUIText lang
               ->
               do
               putStrLn (presentFrontOfFlashcard (head flashcards))
-              putStrLn "What is its back side?"
+              putStrLn $ backSideQuizPromptUIText lang
               printPrompt
               userAttempt <- getLine
               putStrLn (if checkUserAttemptToProvideBack (head flashcards) userAttempt
-                        then "Correct!"
-                        else "Incorrect!"
+                        then correctAnswerMessageUIText lang
+                        else incorrectAnswerMessageUIText lang
                        )
-              putStrLn "Sorry, a quiz with more than one card, is not implemented yet!"
-       "save" ->
+              putStrLn $ multipleCardQuizNotImplementedMessageUIText lang
+       _ | userInput == saveMenuItemShortcutUIText lang
+              ->
               do
               -- Let the user choose the file name.
-              putStrLn "Enter a name for a file to save to:"
+              putStrLn $ nameOfFileToSavePromptUIText lang
               printPrompt
               fileName <- getLine
 
-              putStrLn ("Saving flashcards to file called '" ++ fileName ++ "'")
+              putStrLn (savingFlashcardsMessageUIText lang ++  "'" ++ fileName ++ "'")
               _ <- writeFile fileName (tabSeparatedValuesOfLesson flashcards)
-              putStrLn ("Done writing to file named " ++ fileName)
-       "x"    ->  exitSuccess
-       _      ->  putStrLn ("Unrecognized input: (" ++ userInput ++ ")")
+              putStrLn (doneSavingFileMessageUIText lang ++ " " ++ fileName)
+       _ | userInput == exitMenuItemShortcutUIText lang ->  exitSuccess
+       _      ->  putStrLn (unrecognizedInputMessageUIText lang ++ " (" ++ userInput ++ ")")
   commandLineLoop flashcards -- loop (go back to the beginning)
 
 printPrompt :: IO ()
