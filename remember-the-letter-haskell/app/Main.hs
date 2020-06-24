@@ -81,8 +81,7 @@ commandLineLoop flashcards =
               bSide  <- getLine
               putStrLn ("You entered the following for the back side: (" ++
                          bSide ++ ")")
-              flashcards' <- return (addFlashcardToLesson
-                                       flashcards fSide bSide)
+              let flashcards' = addFlashcardToLesson flashcards fSide bSide
               putStrLn "Done adding flashcard."
               commandLineLoop flashcards' -- loop (go back to the beginning)
        "start quiz" 
