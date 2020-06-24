@@ -1,13 +1,13 @@
 module Main (main) where
 
-import Prelude (IO, (++), (>), getLine, head, length, putStr, putStrLn, return)
+import Prelude (IO, (++), getLine, head, putStr, putStrLn, return, null)
 
 import Lesson (addFlashcardToLesson, backSummary, Flashcard, frontSummary,
                lessonSummary, tabSeparatedValuesOfLesson,
                tabSeparatedValuesToLesson, checkUserAttemptToProvideBack, presentFrontOfFlashcard)
 import System.IO (hFlush, readFile, stdout, writeFile)
 import System.Exit (exitSuccess)
-
+import Control.Monad (unless)
 
 -- | This program runs in the terminal. It outputs
 -- text to the student.
@@ -45,9 +45,7 @@ commandLineLoop flashcards =
   putStrLn "Enter 'add' to add a flashcard."
   putStrLn "Enter 'save' to save all flashcards"
 
-  if length flashcards > 0
-  then putStrLn "Enter 'start quiz' to start a quiz"
-  else return ()
+  unless (null flashcards) (putStrLn "Enter 'start quiz' to start a quiz")
 
   putStrLn "Enter 'x' to exit the application."
   putStrLn "" -- blank line
