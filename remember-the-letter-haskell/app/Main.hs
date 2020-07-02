@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Prelude (IO, String, ($), (++), (==), getLine, head, putStr, putStrLn, return, null)
+import Prelude (IO, ($), (++), (==), getLine, head, putStr, putStrLn, return, null)
 
 import Lesson (addFlashcardToLesson, backSummary, Flashcard, frontSummary,
                lessonSummary, tabSeparatedValuesOfLesson,
@@ -48,8 +48,10 @@ import LanguageUserInterface
   , unrecognizedInputMessageUIText
   )
 
-lang :: String
-lang = "en"
+import LanguageIDs (TwoLetterLanguageID(EN))
+
+lang :: TwoLetterLanguageID
+lang = EN
 
 -- | This program runs in the terminal. It outputs
 -- text to the student.
