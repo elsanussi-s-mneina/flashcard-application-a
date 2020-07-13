@@ -13,7 +13,7 @@ import LanguageUserInterface
   , printingLessonSummaryHeaderUIText
   , openLessonFileMenuItemShortcutUIText
   , openLessonFileMenuItemUIText
-  -- , createLessonFileMenuItemShortcutUIText
+  , createLessonFileMenuItemShortcutUIText
   , createLessonFileMenuItemUIText
   , fileNamePromptAtFileOpeningUIText
   , showFrontAndBackMenuItemUIText
@@ -62,24 +62,30 @@ main =
   putStrLn ""
   putStrLn $ openLessonFileMenuItemUIText lang
   putStrLn $ createLessonFileMenuItemUIText lang
+  putStrLn $ exitMenuItemUIText lang
   printPrompt
 
   userInput <- getLine
-  case
-    userInput
-    of _ | userInput == openLessonFileMenuItemShortcutUIText lang
-               ->
-               do
-               putStrLn $ fileNamePromptAtFileOpeningUIText lang
-               printPrompt
-               fileName <- getLine
-               fileContents <- readFile fileName
-               let flashcards' = tabSeparatedValuesToLesson fileContents
-               commandLineLoop flashcards'
-               return ()
-       _       ->
-               commandLineLoop []
-
+  case userInput of
+        _ | userInput == openLessonFileMenuItemShortcutUIText lang
+                 ->
+                 do
+                 putStrLn $ fileNamePromptAtFileOpeningUIText lang
+                 printPrompt
+                 fileName <- getLine
+                 fileContents <- readFile fileName
+                 let flashcards' = tabSeparatedValuesToLesson fileContents
+                 commandLineLoop flashcards'
+                 return ()
+        _ | userInput == createLessonFileMenuItemShortcutUIText lang
+                 ->
+                 commandLineLoop []
+        _ | userInput == exitMenuItemShortcutUIText lang ->  exitSuccess
+        _
+                 ->
+                 do
+                 putStrLn $ unrecognizedInputMessageUIText lang ++ " \"" ++ userInput ++  "\""
+                 main
 
 commandLineLoop :: [Flashcard] -> IO ()
 commandLineLoop flashcards =
@@ -97,9 +103,8 @@ commandLineLoop flashcards =
   printPrompt
   userInput <- getLine
 
-  case
-    userInput
-    of _ | userInput == showFrontAndBackMenuItemShortcutUIText lang
+  case userInput of
+       _ | userInput == showFrontAndBackMenuItemShortcutUIText lang
               ->
               do
               putStrLn $ printingLessonSummaryHeaderUIText lang
