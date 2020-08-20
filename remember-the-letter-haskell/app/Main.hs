@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Prelude (IO, ($), (++), (==), getLine, head, putStr, putStrLn, return, null)
+import Prelude (IO, ($), (++), (==), getLine, head, putStr, putStrLn, return, tail, null)
 
 import Lesson (addFlashcardToLesson, backSummary, Flashcard, frontSummary,
                lessonSummary, tabSeparatedValuesOfLesson,
@@ -41,7 +41,6 @@ import LanguageUserInterface
   , incorrectAnswerMessageUIText
   , enterFrontSideAcknowledgementUIText
   , enterBackSideAcknowledgementUIText
-  , multipleCardQuizNotImplementedMessageUIText
   , nameOfFileToSavePromptUIText
   , savingFlashcardsMessageUIText
   , doneSavingFileMessageUIText
@@ -139,15 +138,7 @@ commandLineLoop flashcards =
        _ | userInput == startQuizMenuItemShortcutUIText lang
               ->
               do
-              putStrLn (presentFrontOfFlashcard (head flashcards))
-              putStrLn $ backSideQuizPromptUIText lang
-              printPrompt
-              userAttempt <- getLine
-              putStrLn (if checkUserAttemptToProvideBack (head flashcards) userAttempt
-                        then correctAnswerMessageUIText lang
-                        else incorrectAnswerMessageUIText lang
-                       )
-              putStrLn $ multipleCardQuizNotImplementedMessageUIText lang
+              quizShowingFrontExpectingBack flashcards
        _ | userInput == saveMenuItemShortcutUIText lang
               ->
               do
@@ -170,3 +161,20 @@ printPrompt =
   hFlush stdout -- We need to flush standard out
                 -- so that the terminal prompt appears
                 -- before the user input rather than after.
+
+-- | Asks user to remember the back side of a flashcard .
+quizShowingFrontExpectingBack :: [Flashcard] -> IO ()
+quizShowingFrontExpectingBack [] = return ()
+quizShowingFrontExpectingBack flashcards =
+    let flashcard = head flashcards
+    in
+    do
+    putStrLn $ presentFrontOfFlashcard flashcard
+    putStrLn $ backSideQuizPromptUIText lang
+    printPrompt
+    userAttempt <- getLine
+    putStrLn (if checkUserAttemptToProvideBack flashcard userAttempt
+              then correctAnswerMessageUIText lang
+              else incorrectAnswerMessageUIText lang
+             )
+    quizShowingFrontExpectingBack (tail flashcards) -- ask next question.

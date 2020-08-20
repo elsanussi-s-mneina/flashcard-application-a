@@ -165,11 +165,6 @@ enterBackSideAcknowledgementUIText langCode
   | langCode == EN = En.enterBackSideAcknowledgementUIText
   | otherwise      = Zz.enterBackSideAcknowledgementUIText
 
-multipleCardQuizNotImplementedMessageUIText :: TwoLetterLanguageID -> String
-multipleCardQuizNotImplementedMessageUIText langCode
-  | langCode == EN = En.multipleCardQuizNotImplementedMessageUIText
-  | otherwise      = Zz.multipleCardQuizNotImplementedMessageUIText
-
 nameOfFileToSavePromptUIText :: TwoLetterLanguageID -> String
 nameOfFileToSavePromptUIText langCode
   | langCode == EN = En.nameOfFileToSavePromptUIText

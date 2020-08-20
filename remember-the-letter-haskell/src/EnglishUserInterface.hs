@@ -95,9 +95,6 @@ enterFrontSideAcknowledgementUIText
 enterBackSideAcknowledgementUIText
   = "You entered the following for the back side:"
 
-multipleCardQuizNotImplementedMessageUIText
-  = "Sorry, a quiz with more than one card, is not implemented yet!"
-
 nameOfFileToSavePromptUIText
   = "Enter a name for a file to save to:"
   
