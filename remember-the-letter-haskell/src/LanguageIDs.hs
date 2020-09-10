@@ -1,3 +1,7 @@
+{-|
+Module      : LanguageIDs
+Description : Define a data type for specifying a language by name according to an international standard.
+-}
 module LanguageIDs where
 
 type ISO639_1 = TwoLetterLanguageID

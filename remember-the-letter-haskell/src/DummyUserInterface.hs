@@ -1,3 +1,8 @@
+{-|
+Module      : DummyUserInterface
+Description : This module contains text that is used to test whether internationalization works properly
+  without requiring the programmer to know more than one language.
+-}
 module DummyUserInterface where
 
 -- This module is not meant to be used by the user, but

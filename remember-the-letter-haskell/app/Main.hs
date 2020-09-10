@@ -1,3 +1,10 @@
+{-|
+Module      : Main
+Description : This module starts the program. The program runs on the terminal. The program shows text,
+and waits for user input.
+
+All input and output happen in this module.
+-}
 module Main (main) where
 
 import Prelude (IO, ($), (++), (==), getLine, head, putStr, putStrLn, return, tail, null)

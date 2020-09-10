@@ -1,3 +1,7 @@
+{-|
+Module      : LanguageUserInterface
+Description : allows the program's user interface to support more than one language
+-}
 module LanguageUserInterface where
 
 import Prelude ((==), String, otherwise)
@@ -185,7 +189,11 @@ unrecognizedInputMessageUIText langCode
   | langCode == EN = En.unrecognizedInputMessageUIText
   | otherwise      = Zz.unrecognizedInputMessageUIText
 
-{-- Template:
+{-- The following commented out code exists here
+as a snippet, so that more functions can be easily
+defined by using the template.
+
+Template:
 :: TwoLetterLanguageID -> String
 UIText langCode
   | langCode == EN = En.

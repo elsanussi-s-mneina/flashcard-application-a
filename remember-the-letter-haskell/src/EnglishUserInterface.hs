@@ -1,3 +1,8 @@
+{-|
+Module      : EnglishUserInterface
+Description : All English text that is presented to the user, which the user did not supply
+              goes here.
+-}
 module EnglishUserInterface where
 
 welcomeToProgramUIText
