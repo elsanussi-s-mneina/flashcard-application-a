@@ -18,12 +18,20 @@ data LearnerFlashcard = LearnerFlashcard
 --   after its learner recalls that flashcard correctly.
 learnerAnswersCorrectly :: LearnerFlashcard -- ^ a flashcard with statistics
                         -> LearnerFlashcard -- ^ the flashcard with statistics after a correct answer
-learnerAnswersCorrectly (LearnerFlashcard {flashcard = f, correctCount = cc, attemptCount = ac}) = 
-  LearnerFlashcard {flashcard =  f, correctCount = 1 + cc, attemptCount = 1 + ac}
+learnerAnswersCorrectly c =
+  LearnerFlashcard
+  { flashcard =  flashcard c
+  , correctCount = 1 + correctCount c
+  , attemptCount = 1 + attemptCount c
+  }
 
 -- | The function that given a flashcard (and learner-flashcard statistics) returns the flashcard
 --   after its learner fails to recall that flashcard.
 learnerAnswersIncorrectly :: LearnerFlashcard -- ^ a flashcard with statistics
                           -> LearnerFlashcard -- ^ the flashcard with statistics after an incorrect answer
-learnerAnswersIncorrectly (LearnerFlashcard {flashcard = f, correctCount = cc, attemptCount = ac}) = 
-  LearnerFlashcard {flashcard =  f, correctCount = cc, attemptCount = ac + 1}
+learnerAnswersIncorrectly c =
+  LearnerFlashcard
+  { flashcard =  flashcard c
+  , correctCount = correctCount c
+  , attemptCount = 1 + attemptCount c
+  }
