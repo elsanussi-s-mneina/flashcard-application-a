@@ -5,6 +5,7 @@ Description : This module contains text that is used to test whether internation
 -}
 module DummyUserInterface where
 
+import Prelude ((++))
 -- This module is not meant to be used by the user, but
 -- in the case where we need to make sure the language
 -- is structured in a way to easily support multiple languages.
@@ -17,114 +18,114 @@ prefix = "LLL " -- We need something to make the text different.
                    -- The text itself is meaningless. It just needs to be short.
                    -- I prefer between 1 and 3 characters.
 
-welcomeToProgramUIText
+welcomeToProgram 
   = prefix ++ "Welcome to Remember the Letter (Haskell)"
 
-printingLessonSummaryHeaderUIText
+printingLessonSummaryHeader 
   = prefix ++ "Printing Lesson summary:"
 
-openLessonFileMenuItemShortcutUIText
+openLessonFileMenuItemShortcut 
   = "open"
 
-openLessonFileMenuItemUIText
-  = prefix ++ "Enter '" ++ openLessonFileMenuItemShortcutUIText ++ "' if you want to open a lesson file"
+openLessonFileMenuItem 
+  = prefix ++ "Enter '" ++ openLessonFileMenuItemShortcut ++ "' if you want to open a lesson file"
 
-createLessonFileMenuItemShortcutUIText
+createLessonFileMenuItemShortcut 
   = prefix ++ "n"
 
-createLessonFileMenuItemUIText
-  = prefix ++ "Enter '" ++ createLessonFileMenuItemShortcutUIText ++ "' if you want to create a new lesson.\n"
+createLessonFileMenuItem 
+  = prefix ++ "Enter '" ++ createLessonFileMenuItemShortcut ++ "' if you want to create a new lesson.\n"
 
-fileNamePromptAtFileOpeningUIText
+fileNamePromptAtFileOpening 
   = prefix ++ "Enter a name for a file to open:"
 
-showFrontAndBackMenuItemShortcutUIText
+showFrontAndBackMenuItemShortcut 
   = prefix ++ "a"
 
-showFrontAndBackMenuItemUIText
-  = prefix ++ "Enter '" ++ showFrontAndBackMenuItemShortcutUIText ++ "' to show both front and back of each card."
+showFrontAndBackMenuItem 
+  = prefix ++ "Enter '" ++ showFrontAndBackMenuItemShortcut ++ "' to show both front and back of each card."
 
-showFrontMenuItemShortcutUIText
+showFrontMenuItemShortcut 
   = prefix ++ "f"
 
-showFrontMenuItemUIText
-  = prefix ++ "Enter '" ++ showFrontMenuItemShortcutUIText ++ "' to show the front of each card."
+showFrontMenuItem 
+  = prefix ++ "Enter '" ++ showFrontMenuItemShortcut ++ "' to show the front of each card."
 
 
-showBackMenuItemShortcutUIText
+showBackMenuItemShortcut 
   = prefix ++ "b"
 
-showBackMenuItemUIText
-  = prefix ++ "Enter '" ++ showBackMenuItemShortcutUIText ++ "' to show the back of each card."
+showBackMenuItem 
+  = prefix ++ "Enter '" ++ showBackMenuItemShortcut ++ "' to show the back of each card."
 
-addMenuItemShortcutUIText
+addMenuItemShortcut 
   = prefix ++ "add"
 
-addMenuItemUIText
-  = prefix ++ "Enter '" ++ addMenuItemShortcutUIText ++ "' to add a flashcard."
+addMenuItem 
+  = prefix ++ "Enter '" ++ addMenuItemShortcut ++ "' to add a flashcard."
 
-saveMenuItemShortcutUIText
+saveMenuItemShortcut 
   = prefix ++ "save"
 
-saveMenuItemUIText
-  = prefix ++ "Enter '" ++ saveMenuItemShortcutUIText ++ "' to save all flashcards"
+saveMenuItem 
+  = prefix ++ "Enter '" ++ saveMenuItemShortcut ++ "' to save all flashcards"
 
-startQuizMenuItemShortcutUIText
+startQuizMenuItemShortcut 
   = prefix ++ "start quiz"
 
-startQuizMenuItemUIText
-  = prefix ++ "Enter '" ++ startQuizMenuItemUIText ++ "' to start a quiz"
+startQuizMenuItem 
+  = prefix ++ "Enter '" ++ startQuizMenuItem ++ "' to start a quiz"
 
-exitMenuItemShortcutUIText
+exitMenuItemShortcut 
   = prefix ++ "x"
 
-exitMenuItemUIText
-  = prefix ++ "Enter '" ++ exitMenuItemShortcutUIText ++ "' to exit the application."
+exitMenuItem 
+  = prefix ++ "Enter '" ++ exitMenuItemShortcut ++ "' to exit the application."
 
-printFrontsHeaderUIText
+printFrontsHeader 
   = prefix ++ "Print only fronts of each card:"
 
-printBacksHeaderUIText
+printBacksHeader 
   = prefix ++ "Print only backs of each card:"
 
-addingFlashcardHeaderUIText
+addingFlashcardHeader 
   = prefix ++ "Adding a flashcard..."
 
-enterFrontSidePromptUIText
+enterFrontSidePrompt 
   = prefix ++ "Enter the front side:"
 
-enterBackSidePromptUIText
+enterBackSidePrompt 
   = prefix ++ "Enter the back side:"
 
-doneAddingFlashcardMessageUIText
+doneAddingFlashcardMessage 
   = prefix ++ "Done adding flashcard."
 
-backSideQuizPromptUIText
+backSideQuizPrompt 
   = prefix ++ "What is its back side?"
 
-correctAnswerMessageUIText
+correctAnswerMessage 
   = prefix ++ "Correct!"
 
-incorrectAnswerMessageUIText
+incorrectAnswerMessage 
   = prefix ++ "Incorrect!"
 
-enterFrontSideAcknowledgementUIText
+enterFrontSideAcknowledgement 
   = prefix ++ "You entered the following for the front side:"
 
-enterBackSideAcknowledgementUIText
+enterBackSideAcknowledgement 
   = prefix ++ "You entered the following for the back side:"
 
-multipleCardQuizNotImplementedMessageUIText
+multipleCardQuizNotImplementedMessage 
   = prefix ++ "Sorry, a quiz with more than one card, is not implemented yet!"
 
-nameOfFileToSavePromptUIText
+nameOfFileToSavePrompt 
   = prefix ++ "Enter a name for a file to save to:"
 
-savingFlashcardsMessageUIText
+savingFlashcardsMessage 
   = prefix ++ "Saving flashcards to file called"
 
-doneSavingFileMessageUIText
+doneSavingFileMessage 
   = prefix ++ "Done writing to file named"
 
-unrecognizedInputMessageUIText
+unrecognizedInputMessage 
   = prefix ++ "Unrecognized input:"

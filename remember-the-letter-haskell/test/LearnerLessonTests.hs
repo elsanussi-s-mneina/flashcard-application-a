@@ -11,10 +11,11 @@ import Test.Hspec (describe, it, shouldBe, Spec)
 import LearnerLesson 
   (LearnerFlashcard(LearnerFlashcard), learnerAnswersCorrectly, learnerAnswersIncorrectly)
 
-import Lesson (Flashcard(Flashcard), front, back)
+import Flashcard (Flashcard(Flashcard))
+import qualified Flashcard (front, back)
 
 flashcard1 :: Flashcard
-flashcard1 = Flashcard {front = "the", back = "le/la"}
+flashcard1 = Flashcard {Flashcard.front = "the", Flashcard.back = "le/la"}
 
 
 learnerLessonSpecs :: Spec

@@ -4,7 +4,9 @@ Description : User data with respect to a lesson. A lesson consists of flashcard
 -}
 module LearnerLesson where
 
-import Lesson(Flashcard(Flashcard), back, front)
+import Prelude ((+), Show, Eq, Int)
+
+import Flashcard(Flashcard)
 
 -- | A flashcard with user specific information.
 data LearnerFlashcard = LearnerFlashcard

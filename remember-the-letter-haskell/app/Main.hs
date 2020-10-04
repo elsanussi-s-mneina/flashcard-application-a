@@ -9,50 +9,14 @@ module Main (main) where
 
 import Prelude (IO, ($), (++), (==), getLine, head, putStr, putStrLn, return, tail, null)
 
-import qualified Lesson (addFlashcard, backSummary, Flashcard, frontSummary,
-               summary, toTabSeparatedValues,
-               fromTabSeparatedValues, checkUserAttemptToProvideBack, presentFrontOfFlashcard)
+import qualified Lesson
+import Flashcard (Flashcard)
+import qualified Flashcard
 import System.IO (hFlush, readFile, stdout, writeFile)
 import System.Exit (exitSuccess)
 import Control.Monad (unless)
-import LanguageUserInterface
-  ( welcomeToProgramUIText
-  , printingLessonSummaryHeaderUIText
-  , openLessonFileMenuItemShortcutUIText
-  , openLessonFileMenuItemUIText
-  , createLessonFileMenuItemShortcutUIText
-  , createLessonFileMenuItemUIText
-  , fileNamePromptAtFileOpeningUIText
-  , showFrontAndBackMenuItemUIText
-  , showFrontAndBackMenuItemShortcutUIText
-  , showFrontMenuItemUIText
-  , showFrontMenuItemShortcutUIText
-  , showBackMenuItemUIText
-  , showBackMenuItemShortcutUIText
-  , addMenuItemUIText
-  , addMenuItemShortcutUIText
-  , saveMenuItemUIText
-  , saveMenuItemShortcutUIText
-  , startQuizMenuItemUIText
-  , startQuizMenuItemShortcutUIText
-  , exitMenuItemShortcutUIText
-  , exitMenuItemUIText
-  , printFrontsHeaderUIText
-  , printBacksHeaderUIText
-  , addingFlashcardHeaderUIText
-  , enterFrontSidePromptUIText
-  , enterBackSidePromptUIText
-  , doneAddingFlashcardMessageUIText
-  , backSideQuizPromptUIText
-  , correctAnswerMessageUIText
-  , incorrectAnswerMessageUIText
-  , enterFrontSideAcknowledgementUIText
-  , enterBackSideAcknowledgementUIText
-  , nameOfFileToSavePromptUIText
-  , savingFlashcardsMessageUIText
-  , doneSavingFileMessageUIText
-  , unrecognizedInputMessageUIText
-  )
+import qualified LanguageUserInterface as UIText
+
 
 import LanguageIDs (TwoLetterLanguageID(EN))
 
@@ -64,101 +28,101 @@ lang = EN
 main :: IO ()
 main =
   do
-  putStrLn $ welcomeToProgramUIText lang
+  putStrLn $ UIText.welcomeToProgram lang
   putStrLn ""
-  putStrLn $ openLessonFileMenuItemUIText lang
-  putStrLn $ createLessonFileMenuItemUIText lang
-  putStrLn $ exitMenuItemUIText lang
+  putStrLn $ UIText.openLessonFileMenuItem lang
+  putStrLn $ UIText.createLessonFileMenuItem lang
+  putStrLn $ UIText.exitMenuItem lang
   printPrompt
 
   userInput <- getLine
   case userInput of
-        _ | userInput == openLessonFileMenuItemShortcutUIText lang
+        _ | userInput == UIText.openLessonFileMenuItemShortcut lang
                  ->
                  do
-                 putStrLn $ fileNamePromptAtFileOpeningUIText lang
+                 putStrLn $ UIText.fileNamePromptAtFileOpening lang
                  printPrompt
                  fileName <- getLine
                  fileContents <- readFile fileName
                  let flashcards' = Lesson.fromTabSeparatedValues fileContents
                  commandLineLoop flashcards'
                  return ()
-        _ | userInput == createLessonFileMenuItemShortcutUIText lang
+        _ | userInput == UIText.createLessonFileMenuItemShortcut lang
                  ->
                  commandLineLoop []
-        _ | userInput == exitMenuItemShortcutUIText lang ->  exitSuccess
+        _ | userInput == UIText.exitMenuItemShortcut lang ->  exitSuccess
         _
                  ->
                  do
-                 putStrLn $ unrecognizedInputMessageUIText lang ++ " \"" ++ userInput ++  "\""
+                 putStrLn $ UIText.unrecognizedInputMessage lang ++ " \"" ++ userInput ++  "\""
                  main
 
-commandLineLoop :: [Lesson.Flashcard] -> IO ()
+commandLineLoop :: [Flashcard] -> IO ()
 commandLineLoop flashcards =
   do
-  putStrLn $ showFrontAndBackMenuItemUIText lang
-  putStrLn $ showFrontMenuItemUIText lang
-  putStrLn $ showBackMenuItemUIText lang
-  putStrLn $ addMenuItemUIText lang
-  putStrLn $ saveMenuItemUIText lang
+  putStrLn $ UIText.showFrontAndBackMenuItem lang
+  putStrLn $ UIText.showFrontMenuItem lang
+  putStrLn $ UIText.showBackMenuItem lang
+  putStrLn $ UIText.addMenuItem lang
+  putStrLn $ UIText.saveMenuItem lang
 
-  unless (null flashcards) (putStrLn $ startQuizMenuItemUIText lang)
+  unless (null flashcards) (putStrLn $ UIText.startQuizMenuItem lang)
 
-  putStrLn $ exitMenuItemUIText lang
+  putStrLn $ UIText.exitMenuItem lang
   putStrLn "" -- blank line
   printPrompt
   userInput <- getLine
 
   case userInput of
-       _ | userInput == showFrontAndBackMenuItemShortcutUIText lang
+       _ | userInput == UIText.showFrontAndBackMenuItemShortcut lang
               ->
               do
-              putStrLn $ printingLessonSummaryHeaderUIText lang
+              putStrLn $ UIText.printingLessonSummaryHeader lang
               putStrLn (Lesson.summary flashcards)
-       _ | userInput == showFrontMenuItemShortcutUIText lang
+       _ | userInput == UIText.showFrontMenuItemShortcut lang
               ->
               do
-              putStrLn $ printFrontsHeaderUIText lang
+              putStrLn $ UIText.printFrontsHeader lang
               putStrLn (Lesson.frontSummary flashcards)
-       _ | userInput == showBackMenuItemShortcutUIText lang
+       _ | userInput == UIText.showBackMenuItemShortcut lang
               ->
               do
-              putStrLn $ printBacksHeaderUIText lang
+              putStrLn $ UIText.printBacksHeader lang
               putStrLn (Lesson.backSummary flashcards)
-       _ | userInput == addMenuItemShortcutUIText lang
+       _ | userInput == UIText.addMenuItemShortcut lang
               ->
               do
-              putStrLn $ addingFlashcardHeaderUIText lang
-              putStrLn $ enterFrontSidePromptUIText lang
+              putStrLn $ UIText.addingFlashcardHeader lang
+              putStrLn $ UIText.enterFrontSidePrompt lang
               printPrompt
               fSide <- getLine
-              putStrLn (enterFrontSideAcknowledgementUIText lang ++ " (" ++
+              putStrLn (UIText.enterFrontSideAcknowledgement lang ++ " (" ++
                          fSide ++ ")")
-              putStrLn $ enterBackSidePromptUIText lang
+              putStrLn $ UIText.enterBackSidePrompt lang
               printPrompt
               bSide  <- getLine
-              putStrLn (enterBackSideAcknowledgementUIText lang ++ " (" ++
+              putStrLn (UIText.enterBackSideAcknowledgement lang ++ " (" ++
                          bSide ++ ")")
               let flashcards' = Lesson.addFlashcard flashcards fSide bSide
-              putStrLn $ doneAddingFlashcardMessageUIText lang
+              putStrLn $ UIText.doneAddingFlashcardMessage lang
               commandLineLoop flashcards' -- loop (go back to the beginning)
-       _ | userInput == startQuizMenuItemShortcutUIText lang
+       _ | userInput == UIText.startQuizMenuItemShortcut lang
               ->
               do
               quizShowingFrontExpectingBack flashcards
-       _ | userInput == saveMenuItemShortcutUIText lang
+       _ | userInput == UIText.saveMenuItemShortcut lang
               ->
               do
               -- Let the user choose the file name.
-              putStrLn $ nameOfFileToSavePromptUIText lang
+              putStrLn $ UIText.nameOfFileToSavePrompt lang
               printPrompt
               fileName <- getLine
 
-              putStrLn (savingFlashcardsMessageUIText lang ++  "'" ++ fileName ++ "'")
+              putStrLn (UIText.savingFlashcardsMessage lang ++  "'" ++ fileName ++ "'")
               _ <- writeFile fileName (Lesson.toTabSeparatedValues flashcards)
-              putStrLn (doneSavingFileMessageUIText lang ++ " " ++ fileName)
-       _ | userInput == exitMenuItemShortcutUIText lang ->  exitSuccess
-       _      ->  putStrLn (unrecognizedInputMessageUIText lang ++ " (" ++ userInput ++ ")")
+              putStrLn (UIText.doneSavingFileMessage lang ++ " " ++ fileName)
+       _ | userInput == UIText.exitMenuItemShortcut lang ->  exitSuccess
+       _      ->  putStrLn (UIText.unrecognizedInputMessage lang ++ " (" ++ userInput ++ ")")
   commandLineLoop flashcards -- loop (go back to the beginning)
 
 printPrompt :: IO ()
@@ -170,18 +134,18 @@ printPrompt =
                 -- before the user input rather than after.
 
 -- | Asks user to remember the back side of a flashcard .
-quizShowingFrontExpectingBack :: [Lesson.Flashcard] -> IO ()
+quizShowingFrontExpectingBack :: [Flashcard] -> IO ()
 quizShowingFrontExpectingBack [] = return ()
 quizShowingFrontExpectingBack flashcards =
     let flashcard = head flashcards
     in
     do
-    putStrLn $ Lesson.presentFrontOfFlashcard flashcard
-    putStrLn $ backSideQuizPromptUIText lang
+    putStrLn $ Flashcard.presentFront flashcard
+    putStrLn $ UIText.backSideQuizPrompt lang
     printPrompt
     userAttempt <- getLine
     putStrLn (if Lesson.checkUserAttemptToProvideBack flashcard userAttempt
-              then correctAnswerMessageUIText lang
-              else incorrectAnswerMessageUIText lang
+              then UIText.correctAnswerMessage lang
+              else UIText.incorrectAnswerMessage lang
              )
     quizShowingFrontExpectingBack (tail flashcards) -- ask next question.

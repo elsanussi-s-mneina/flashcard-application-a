@@ -5,109 +5,111 @@ Description : All English text that is presented to the user, which the user did
 -}
 module EnglishUserInterface where
 
-welcomeToProgramUIText
+import Prelude ((++))
+
+welcomeToProgram
   = "Welcome to Remember the Letter (Haskell)"
 
-printingLessonSummaryHeaderUIText
+printingLessonSummaryHeader
   = "Printing Lesson summary:"
 
-openLessonFileMenuItemShortcutUIText
+openLessonFileMenuItemShortcut
   = "open"
 
-openLessonFileMenuItemUIText
-  = "Enter '" ++ openLessonFileMenuItemShortcutUIText ++ "' if you want to open a lesson file"
+openLessonFileMenuItem
+  = "Enter '" ++ openLessonFileMenuItemShortcut ++ "' if you want to open a lesson file"
 
-createLessonFileMenuItemShortcutUIText
+createLessonFileMenuItemShortcut
   = "n"
-createLessonFileMenuItemUIText
-  = "Enter '" ++ createLessonFileMenuItemShortcutUIText ++ "' if you want to create a new lesson.\n"
+createLessonFileMenuItem
+  = "Enter '" ++ createLessonFileMenuItemShortcut ++ "' if you want to create a new lesson.\n"
 
-fileNamePromptAtFileOpeningUIText
+fileNamePromptAtFileOpening
   = "Enter a name for a file to open:"
 
-showFrontAndBackMenuItemShortcutUIText
+showFrontAndBackMenuItemShortcut
   = "a"
 
-showFrontAndBackMenuItemUIText
-  = "Enter '" ++ showFrontAndBackMenuItemShortcutUIText ++ "' to show both front and back of each card."
+showFrontAndBackMenuItem
+  = "Enter '" ++ showFrontAndBackMenuItemShortcut ++ "' to show both front and back of each card."
 
-showFrontMenuItemShortcutUIText
+showFrontMenuItemShortcut
   = "f"
 
-showFrontMenuItemUIText
-  = "Enter '" ++ showFrontMenuItemShortcutUIText ++ "' to show the front of each card."
+showFrontMenuItem
+  = "Enter '" ++ showFrontMenuItemShortcut ++ "' to show the front of each card."
 
-showBackMenuItemShortcutUIText
+showBackMenuItemShortcut
   = "b"
 
-showBackMenuItemUIText
-  = "Enter '" ++ showBackMenuItemShortcutUIText ++ "' to show the back of each card."
+showBackMenuItem
+  = "Enter '" ++ showBackMenuItemShortcut ++ "' to show the back of each card."
 
-addMenuItemShortcutUIText
+addMenuItemShortcut
   = "add"
 
-addMenuItemUIText
-  = "Enter '" ++ addMenuItemShortcutUIText ++ "' to add a flashcard."
+addMenuItem
+  = "Enter '" ++ addMenuItemShortcut ++ "' to add a flashcard."
 
-saveMenuItemShortcutUIText
+saveMenuItemShortcut
   = "save"
 
-saveMenuItemUIText
-  = "Enter '" ++ saveMenuItemShortcutUIText ++ "' to save all flashcards"
+saveMenuItem
+  = "Enter '" ++ saveMenuItemShortcut ++ "' to save all flashcards"
 
-startQuizMenuItemShortcutUIText
+startQuizMenuItemShortcut
   = "start quiz"
 
-startQuizMenuItemUIText
-  = "Enter '" ++ startQuizMenuItemShortcutUIText ++ "' to start a quiz"
+startQuizMenuItem
+  = "Enter '" ++ startQuizMenuItemShortcut ++ "' to start a quiz"
 
-exitMenuItemShortcutUIText
+exitMenuItemShortcut
   = "x"
 
-exitMenuItemUIText
-  = "Enter '" ++ exitMenuItemShortcutUIText ++ "' to exit the application."
+exitMenuItem
+  = "Enter '" ++ exitMenuItemShortcut ++ "' to exit the application."
 
-printFrontsHeaderUIText
+printFrontsHeader
   = "Print only fronts of each card:"
 
-printBacksHeaderUIText
+printBacksHeader
   = "Print only backs of each card:"
 
-addingFlashcardHeaderUIText
+addingFlashcardHeader
   = "Adding a flashcard..."
 
-enterFrontSidePromptUIText
+enterFrontSidePrompt
   = "Enter the front side:"
 
-enterBackSidePromptUIText
+enterBackSidePrompt
   = "Enter the back side:"
 
-doneAddingFlashcardMessageUIText
+doneAddingFlashcardMessage
   = "Done adding flashcard."
 
-backSideQuizPromptUIText
+backSideQuizPrompt
   = "What is its back side?"
 
-correctAnswerMessageUIText
+correctAnswerMessage
   = "Correct!"
 
-incorrectAnswerMessageUIText
+incorrectAnswerMessage
   = "Incorrect!"
 
-enterFrontSideAcknowledgementUIText
+enterFrontSideAcknowledgement
   = "You entered the following for the front side:"
 
-enterBackSideAcknowledgementUIText
+enterBackSideAcknowledgement
   = "You entered the following for the back side:"
 
-nameOfFileToSavePromptUIText
+nameOfFileToSavePrompt
   = "Enter a name for a file to save to:"
   
-savingFlashcardsMessageUIText
+savingFlashcardsMessage
   = "Saving flashcards to file called "
 
-doneSavingFileMessageUIText
+doneSavingFileMessage
   = "Done writing to file named" 
   
-unrecognizedInputMessageUIText
+unrecognizedInputMessage
   = "Unrecognized input:"

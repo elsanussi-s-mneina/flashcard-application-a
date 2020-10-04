@@ -9,53 +9,53 @@ import Prelude (($), (++), length)
 
 import Test.Hspec (describe, it, shouldBe, Spec)
 import Lesson (addFlashcard, backSummary,
-               Flashcard(Flashcard, back, front),
                frontSummary, summary,
-               showFlashcard, showFlashcardBack, showFlashcardFront,
-               tabSeparatedValuesOfFlashcard, toTabSeparatedValues,
-               tabSeparatedValuesToFlashcard, fromTabSeparatedValues,
-               presentBackOfFlashcard, presentFrontOfFlashcard)
+               toTabSeparatedValues,
+               fromTabSeparatedValues)
+import Flashcard(Flashcard(Flashcard))
+import qualified Flashcard (presentBack, presentFront, toTabSeparatedValues,
+       fromTabSeparatedValues, showBack, showFront, show, front, back)
 
 flashcards :: [Flashcard]
 flashcards = [flashcard1, flashcard2]
 flashcard1 :: Flashcard
-flashcard1 = Flashcard {front = "the", back = "le/la"}
+flashcard1 = Flashcard {Flashcard.front = "the", Flashcard.back = "le/la"}
 flashcard2 :: Flashcard
-flashcard2 = Flashcard {front = "a", back = "un/une"}
+flashcard2 = Flashcard {Flashcard.front = "a", Flashcard.back = "un/une"}
 
 
 lessonSpecs :: Spec
 lessonSpecs =
   do
-  describe "showFlashcard" $ do
+  describe "show" $ do
     it ("should return the front side " ++
         "then a pipe character then the back side") $ do
-      showFlashcard (Flashcard "Z" "d") `shouldBe` "Z | d"
-      showFlashcard (Flashcard "AB" "abc") `shouldBe` "AB | abc"
-  describe "showFlashcardFront" $ do
+      Flashcard.show (Flashcard "Z" "d") `shouldBe` "Z | d"
+      Flashcard.show (Flashcard "AB" "abc") `shouldBe` "AB | abc"
+  describe "showFront" $ do
      it ("should return \"one\" when the front side is \"one\"") $ do
-       showFlashcardFront (Flashcard "one" "une") `shouldBe` "one"
+       Flashcard.showFront (Flashcard "one" "une") `shouldBe` "one"
      it ("should return \"three\" when the front side is \"three\"") $ do
-       showFlashcardFront (Flashcard "three" "h") `shouldBe` "three"
+       Flashcard.showFront (Flashcard "three" "h") `shouldBe` "three"
 
-  describe "showFlashcardBack" $ do
+  describe "showBack" $ do
     it ("should return \"five\" when the back side is \"five\"") $ do
-      showFlashcardBack (Flashcard "" "five") `shouldBe` "five"
+      Flashcard.showBack (Flashcard "" "five") `shouldBe` "five"
     it ("should return an empty string when the back side is empty") $ do
-      showFlashcardBack (Flashcard "wh" "") `shouldBe` ""
+      Flashcard.showBack (Flashcard "wh" "") `shouldBe` ""
 
   describe "tabSeparatedValuesOfFlashcard" $ do
     it ("should return tab then new line when the front side and back " ++
         "side are empty") $ do
-      tabSeparatedValuesOfFlashcard (Flashcard "" "") `shouldBe` "\t\n"
+      Flashcard.toTabSeparatedValues (Flashcard "" "") `shouldBe` "\t\n"
     it ("should return \"turtle\" then tab then new line when " ++
         "the front side is \"turtle\" and the back side is empty") $ do
-      tabSeparatedValuesOfFlashcard (Flashcard "turtle" "")
+      Flashcard.toTabSeparatedValues (Flashcard "turtle" "")
       `shouldBe`
       "turtle\t\n"
     it ("should return \"turtle\" then tab then \"fox\" then new line " ++
         "when the front side is \"turtle\" and the back side is \"fox\".") $ do
-      tabSeparatedValuesOfFlashcard (Flashcard "turtle" "fox")
+      Flashcard.toTabSeparatedValues (Flashcard "turtle" "fox")
       `shouldBe`
       "turtle\tfox\n"
 
@@ -63,19 +63,19 @@ lessonSpecs =
     it ("should return a flashcard with turtle on the front side " ++
         "and fox on the back side " ++
         "when given turtle then a tab then fox then a new line.") $ do
-          (tabSeparatedValuesToFlashcard "turtle\tfox\n")
+          (Flashcard.fromTabSeparatedValues "turtle\tfox\n")
             `shouldBe`
             (Flashcard "turtle" "fox")
     it ("should return a flashcard with rabbit on the front side " ++
         "and snail on the back side " ++
         "when given rabbit then a tab then snail then a new line") $ do
-          (showFlashcard $  (tabSeparatedValuesToFlashcard "rabbit\tsnail\n"))
+          (Flashcard.show $  (Flashcard.fromTabSeparatedValues "rabbit\tsnail\n"))
             `shouldBe`
             "rabbit | snail"
     it ("should not crash when given rabbit then a new line, " ++
         "it should just set the back to blank, " ++
         "and the front to \"rabbit\".") $ do
-          (showFlashcard (tabSeparatedValuesToFlashcard "rabbit\n"))
+          (Flashcard.show (Flashcard.fromTabSeparatedValues "rabbit\n"))
             `shouldBe`
             "rabbit | "
   describe "Lesson.fromTabSeparatedValues" $ do
@@ -140,10 +140,10 @@ lessonSpecs =
       `shouldBe`           [(Flashcard "x" "y"),
                             (Flashcard "b" "c"),
                             (Flashcard "r" "s")]
-  describe "presentBackOfFlashcard" $ do
+  describe "presentBack" $ do
     it "should show the back of a flashcard in context" $ do
-      presentBackOfFlashcard (Flashcard "f23" "1234b") `shouldBe` "I am showing you the back of a flashcard.\nYou see \"1234b\""
-      presentBackOfFlashcard (Flashcard "zzz" "321n8 s") `shouldBe` "I am showing you the back of a flashcard.\nYou see \"321n8 s\""
+      Flashcard.presentBack (Flashcard "f23" "1234b") `shouldBe` "I am showing you the back of a flashcard.\nYou see \"1234b\""
+      Flashcard.presentBack (Flashcard "zzz" "321n8 s") `shouldBe` "I am showing you the back of a flashcard.\nYou see \"321n8 s\""
     it "should show the front of a flashcard in context" $ do
-      presentFrontOfFlashcard (Flashcard "f23" "1234b") `shouldBe` "I am showing you the front of a flashcard.\nYou see \"f23\""
-      presentFrontOfFlashcard (Flashcard "zzz" "321n8 s") `shouldBe` "I am showing you the front of a flashcard.\nYou see \"zzz\""
+      Flashcard.presentFront (Flashcard "f23" "1234b") `shouldBe` "I am showing you the front of a flashcard.\nYou see \"f23\""
+      Flashcard.presentFront (Flashcard "zzz" "321n8 s") `shouldBe` "I am showing you the front of a flashcard.\nYou see \"zzz\""

@@ -9,185 +9,185 @@ import EnglishUserInterface as En
 import DummyUserInterface as Zz
 import LanguageIDs
 
-welcomeToProgramUIText :: TwoLetterLanguageID -> String
-welcomeToProgramUIText langCode
-  | langCode == EN = En.welcomeToProgramUIText
-  | otherwise      = Zz.welcomeToProgramUIText
+welcomeToProgram :: TwoLetterLanguageID -> String
+welcomeToProgram langCode
+  | langCode == EN = En.welcomeToProgram 
+  | otherwise      = Zz.welcomeToProgram 
 
-printingLessonSummaryHeaderUIText :: TwoLetterLanguageID -> String
-printingLessonSummaryHeaderUIText langCode
-  | langCode == EN = En.printingLessonSummaryHeaderUIText
-  | otherwise      = Zz.printingLessonSummaryHeaderUIText
+printingLessonSummaryHeader :: TwoLetterLanguageID -> String
+printingLessonSummaryHeader langCode
+  | langCode == EN = En.printingLessonSummaryHeader 
+  | otherwise      = Zz.printingLessonSummaryHeader 
 
-openLessonFileMenuItemShortcutUIText :: TwoLetterLanguageID -> String
-openLessonFileMenuItemShortcutUIText langCode
-  | langCode == EN = En.openLessonFileMenuItemShortcutUIText
-  | otherwise      = Zz.openLessonFileMenuItemShortcutUIText
+openLessonFileMenuItemShortcut :: TwoLetterLanguageID -> String
+openLessonFileMenuItemShortcut langCode
+  | langCode == EN = En.openLessonFileMenuItemShortcut 
+  | otherwise      = Zz.openLessonFileMenuItemShortcut 
 
-openLessonFileMenuItemUIText :: TwoLetterLanguageID -> String
-openLessonFileMenuItemUIText langCode
-  | langCode == EN = En.openLessonFileMenuItemUIText
-  | otherwise      = Zz.openLessonFileMenuItemUIText
+openLessonFileMenuItem :: TwoLetterLanguageID -> String
+openLessonFileMenuItem langCode
+  | langCode == EN = En.openLessonFileMenuItem 
+  | otherwise      = Zz.openLessonFileMenuItem 
 
-createLessonFileMenuItemShortcutUIText :: TwoLetterLanguageID -> String
-createLessonFileMenuItemShortcutUIText langCode
-  | langCode == EN = En.createLessonFileMenuItemShortcutUIText
-  | otherwise      = Zz.createLessonFileMenuItemShortcutUIText
+createLessonFileMenuItemShortcut :: TwoLetterLanguageID -> String
+createLessonFileMenuItemShortcut langCode
+  | langCode == EN = En.createLessonFileMenuItemShortcut 
+  | otherwise      = Zz.createLessonFileMenuItemShortcut 
 
-createLessonFileMenuItemUIText :: TwoLetterLanguageID -> String
-createLessonFileMenuItemUIText langCode
-  | langCode == EN = En.createLessonFileMenuItemUIText
-  | otherwise      = Zz.createLessonFileMenuItemUIText
+createLessonFileMenuItem :: TwoLetterLanguageID -> String
+createLessonFileMenuItem langCode
+  | langCode == EN = En.createLessonFileMenuItem 
+  | otherwise      = Zz.createLessonFileMenuItem 
  
-fileNamePromptAtFileOpeningUIText :: TwoLetterLanguageID -> String
-fileNamePromptAtFileOpeningUIText langCode
-  | langCode == EN = En.fileNamePromptAtFileOpeningUIText
-  | otherwise      = Zz.fileNamePromptAtFileOpeningUIText
+fileNamePromptAtFileOpening :: TwoLetterLanguageID -> String
+fileNamePromptAtFileOpening langCode
+  | langCode == EN = En.fileNamePromptAtFileOpening 
+  | otherwise      = Zz.fileNamePromptAtFileOpening 
 
-showFrontAndBackMenuItemShortcutUIText :: TwoLetterLanguageID -> String
-showFrontAndBackMenuItemShortcutUIText langCode
-  | langCode == EN = En.showFrontAndBackMenuItemShortcutUIText
-  | otherwise        = Zz.showFrontAndBackMenuItemShortcutUIText
+showFrontAndBackMenuItemShortcut :: TwoLetterLanguageID -> String
+showFrontAndBackMenuItemShortcut langCode
+  | langCode == EN = En.showFrontAndBackMenuItemShortcut 
+  | otherwise        = Zz.showFrontAndBackMenuItemShortcut 
 
-showFrontAndBackMenuItemUIText :: TwoLetterLanguageID -> String
-showFrontAndBackMenuItemUIText langCode
-  | langCode == EN = En.showFrontAndBackMenuItemUIText
-  | otherwise        = Zz.showFrontAndBackMenuItemUIText
+showFrontAndBackMenuItem :: TwoLetterLanguageID -> String
+showFrontAndBackMenuItem langCode
+  | langCode == EN = En.showFrontAndBackMenuItem 
+  | otherwise        = Zz.showFrontAndBackMenuItem 
 
-showFrontMenuItemShortcutUIText :: TwoLetterLanguageID -> String
-showFrontMenuItemShortcutUIText langCode
-  | langCode == EN = En.showFrontMenuItemShortcutUIText
-  | otherwise        = Zz.showFrontMenuItemShortcutUIText
+showFrontMenuItemShortcut :: TwoLetterLanguageID -> String
+showFrontMenuItemShortcut langCode
+  | langCode == EN = En.showFrontMenuItemShortcut 
+  | otherwise        = Zz.showFrontMenuItemShortcut 
 
-showFrontMenuItemUIText :: TwoLetterLanguageID -> String
-showFrontMenuItemUIText langCode
-  | langCode == EN = En.showFrontMenuItemUIText
-  | otherwise      = Zz.showFrontMenuItemUIText
+showFrontMenuItem :: TwoLetterLanguageID -> String
+showFrontMenuItem langCode
+  | langCode == EN = En.showFrontMenuItem 
+  | otherwise      = Zz.showFrontMenuItem 
 
-showBackMenuItemShortcutUIText :: TwoLetterLanguageID -> String
-showBackMenuItemShortcutUIText langCode
-  | langCode == EN = En.showBackMenuItemShortcutUIText
-  | otherwise      = Zz.showBackMenuItemShortcutUIText
+showBackMenuItemShortcut :: TwoLetterLanguageID -> String
+showBackMenuItemShortcut langCode
+  | langCode == EN = En.showBackMenuItemShortcut 
+  | otherwise      = Zz.showBackMenuItemShortcut 
 
-showBackMenuItemUIText :: TwoLetterLanguageID -> String
-showBackMenuItemUIText langCode
-  | langCode == EN = En.showBackMenuItemUIText
-  | otherwise      = Zz.showBackMenuItemUIText
+showBackMenuItem :: TwoLetterLanguageID -> String
+showBackMenuItem langCode
+  | langCode == EN = En.showBackMenuItem 
+  | otherwise      = Zz.showBackMenuItem 
 
-addMenuItemShortcutUIText :: TwoLetterLanguageID -> String
-addMenuItemShortcutUIText langCode
-  | langCode == EN = En.addMenuItemShortcutUIText
-  | otherwise      = Zz.addMenuItemShortcutUIText
+addMenuItemShortcut :: TwoLetterLanguageID -> String
+addMenuItemShortcut langCode
+  | langCode == EN = En.addMenuItemShortcut 
+  | otherwise      = Zz.addMenuItemShortcut 
 
-addMenuItemUIText :: TwoLetterLanguageID -> String
-addMenuItemUIText langCode
-  | langCode == EN = En.addMenuItemUIText
-  | otherwise      = Zz.addMenuItemUIText
+addMenuItem :: TwoLetterLanguageID -> String
+addMenuItem langCode
+  | langCode == EN = En.addMenuItem 
+  | otherwise      = Zz.addMenuItem 
 
-saveMenuItemShortcutUIText :: TwoLetterLanguageID -> String
-saveMenuItemShortcutUIText langCode
-  | langCode == EN = En.saveMenuItemShortcutUIText
-  | otherwise      = Zz.saveMenuItemShortcutUIText
+saveMenuItemShortcut :: TwoLetterLanguageID -> String
+saveMenuItemShortcut langCode
+  | langCode == EN = En.saveMenuItemShortcut 
+  | otherwise      = Zz.saveMenuItemShortcut 
 
-saveMenuItemUIText :: TwoLetterLanguageID -> String
-saveMenuItemUIText langCode
-  | langCode == EN = En.saveMenuItemUIText
-  | otherwise      = Zz.saveMenuItemUIText
+saveMenuItem :: TwoLetterLanguageID -> String
+saveMenuItem langCode
+  | langCode == EN = En.saveMenuItem 
+  | otherwise      = Zz.saveMenuItem 
 
-startQuizMenuItemShortcutUIText :: TwoLetterLanguageID -> String
-startQuizMenuItemShortcutUIText langCode
-  | langCode == EN = En.startQuizMenuItemShortcutUIText
-  | otherwise      = Zz.startQuizMenuItemShortcutUIText
+startQuizMenuItemShortcut :: TwoLetterLanguageID -> String
+startQuizMenuItemShortcut langCode
+  | langCode == EN = En.startQuizMenuItemShortcut 
+  | otherwise      = Zz.startQuizMenuItemShortcut 
 
-startQuizMenuItemUIText :: TwoLetterLanguageID -> String
-startQuizMenuItemUIText langCode
-  | langCode == EN = En.startQuizMenuItemUIText
-  | otherwise      = Zz.startQuizMenuItemUIText
+startQuizMenuItem :: TwoLetterLanguageID -> String
+startQuizMenuItem langCode
+  | langCode == EN = En.startQuizMenuItem 
+  | otherwise      = Zz.startQuizMenuItem 
 
-exitMenuItemShortcutUIText :: TwoLetterLanguageID -> String
-exitMenuItemShortcutUIText langCode
-  | langCode == EN = En.exitMenuItemShortcutUIText
-  | otherwise      = Zz.exitMenuItemShortcutUIText
+exitMenuItemShortcut :: TwoLetterLanguageID -> String
+exitMenuItemShortcut langCode
+  | langCode == EN = En.exitMenuItemShortcut 
+  | otherwise      = Zz.exitMenuItemShortcut 
 
-exitMenuItemUIText :: TwoLetterLanguageID -> String
-exitMenuItemUIText langCode
-  | langCode == EN = En.exitMenuItemUIText
-  | otherwise      = Zz.exitMenuItemUIText
+exitMenuItem :: TwoLetterLanguageID -> String
+exitMenuItem langCode
+  | langCode == EN = En.exitMenuItem 
+  | otherwise      = Zz.exitMenuItem 
 
-printFrontsHeaderUIText :: TwoLetterLanguageID -> String
-printFrontsHeaderUIText langCode
-  | langCode == EN = En.printFrontsHeaderUIText
-  | otherwise      = Zz.printFrontsHeaderUIText
+printFrontsHeader :: TwoLetterLanguageID -> String
+printFrontsHeader langCode
+  | langCode == EN = En.printFrontsHeader 
+  | otherwise      = Zz.printFrontsHeader 
 
-printBacksHeaderUIText :: TwoLetterLanguageID -> String
-printBacksHeaderUIText langCode
-  | langCode == EN = En.printBacksHeaderUIText
-  | otherwise      = Zz.printBacksHeaderUIText
+printBacksHeader :: TwoLetterLanguageID -> String
+printBacksHeader langCode
+  | langCode == EN = En.printBacksHeader 
+  | otherwise      = Zz.printBacksHeader 
 
-addingFlashcardHeaderUIText :: TwoLetterLanguageID -> String
-addingFlashcardHeaderUIText langCode
-  | langCode == EN = En.addingFlashcardHeaderUIText
-  | otherwise      = Zz.addingFlashcardHeaderUIText
+addingFlashcardHeader :: TwoLetterLanguageID -> String
+addingFlashcardHeader langCode
+  | langCode == EN = En.addingFlashcardHeader 
+  | otherwise      = Zz.addingFlashcardHeader 
 
-enterFrontSidePromptUIText :: TwoLetterLanguageID -> String
-enterFrontSidePromptUIText langCode
-  | langCode == EN = En.enterFrontSidePromptUIText
-  | otherwise      = Zz.enterFrontSidePromptUIText
+enterFrontSidePrompt :: TwoLetterLanguageID -> String
+enterFrontSidePrompt langCode
+  | langCode == EN = En.enterFrontSidePrompt 
+  | otherwise      = Zz.enterFrontSidePrompt 
 
-enterBackSidePromptUIText :: TwoLetterLanguageID -> String
-enterBackSidePromptUIText langCode
-  | langCode == EN = En.enterBackSidePromptUIText
-  | otherwise      = Zz.enterBackSidePromptUIText
+enterBackSidePrompt :: TwoLetterLanguageID -> String
+enterBackSidePrompt langCode
+  | langCode == EN = En.enterBackSidePrompt 
+  | otherwise      = Zz.enterBackSidePrompt 
 
-doneAddingFlashcardMessageUIText :: TwoLetterLanguageID -> String
-doneAddingFlashcardMessageUIText langCode
-  | langCode == EN = En.doneAddingFlashcardMessageUIText
-  | otherwise      = Zz.doneAddingFlashcardMessageUIText
+doneAddingFlashcardMessage :: TwoLetterLanguageID -> String
+doneAddingFlashcardMessage langCode
+  | langCode == EN = En.doneAddingFlashcardMessage 
+  | otherwise      = Zz.doneAddingFlashcardMessage 
 
-backSideQuizPromptUIText :: TwoLetterLanguageID -> String
-backSideQuizPromptUIText langCode
-  | langCode == EN = En.backSideQuizPromptUIText
-  | otherwise      = Zz.backSideQuizPromptUIText
+backSideQuizPrompt :: TwoLetterLanguageID -> String
+backSideQuizPrompt langCode
+  | langCode == EN = En.backSideQuizPrompt 
+  | otherwise      = Zz.backSideQuizPrompt 
 
-correctAnswerMessageUIText :: TwoLetterLanguageID -> String
-correctAnswerMessageUIText langCode
-  | langCode == EN = En.correctAnswerMessageUIText
-  | otherwise      = Zz.correctAnswerMessageUIText
+correctAnswerMessage :: TwoLetterLanguageID -> String
+correctAnswerMessage langCode
+  | langCode == EN = En.correctAnswerMessage 
+  | otherwise      = Zz.correctAnswerMessage 
 
-incorrectAnswerMessageUIText :: TwoLetterLanguageID -> String
-incorrectAnswerMessageUIText langCode
-  | langCode == EN = En.incorrectAnswerMessageUIText
-  | otherwise      = Zz.incorrectAnswerMessageUIText
+incorrectAnswerMessage :: TwoLetterLanguageID -> String
+incorrectAnswerMessage langCode
+  | langCode == EN = En.incorrectAnswerMessage 
+  | otherwise      = Zz.incorrectAnswerMessage 
 
-enterFrontSideAcknowledgementUIText :: TwoLetterLanguageID -> String
-enterFrontSideAcknowledgementUIText langCode
-  | langCode == EN = En.enterFrontSideAcknowledgementUIText
-  | otherwise      = Zz.enterFrontSideAcknowledgementUIText
+enterFrontSideAcknowledgement :: TwoLetterLanguageID -> String
+enterFrontSideAcknowledgement langCode
+  | langCode == EN = En.enterFrontSideAcknowledgement 
+  | otherwise      = Zz.enterFrontSideAcknowledgement 
 
-enterBackSideAcknowledgementUIText :: TwoLetterLanguageID -> String
-enterBackSideAcknowledgementUIText langCode
-  | langCode == EN = En.enterBackSideAcknowledgementUIText
-  | otherwise      = Zz.enterBackSideAcknowledgementUIText
+enterBackSideAcknowledgement :: TwoLetterLanguageID -> String
+enterBackSideAcknowledgement langCode
+  | langCode == EN = En.enterBackSideAcknowledgement 
+  | otherwise      = Zz.enterBackSideAcknowledgement 
 
-nameOfFileToSavePromptUIText :: TwoLetterLanguageID -> String
-nameOfFileToSavePromptUIText langCode
-  | langCode == EN = En.nameOfFileToSavePromptUIText
-  | otherwise      = Zz.nameOfFileToSavePromptUIText
+nameOfFileToSavePrompt :: TwoLetterLanguageID -> String
+nameOfFileToSavePrompt langCode
+  | langCode == EN = En.nameOfFileToSavePrompt 
+  | otherwise      = Zz.nameOfFileToSavePrompt 
 
-savingFlashcardsMessageUIText :: TwoLetterLanguageID -> String
-savingFlashcardsMessageUIText langCode
-  | langCode == EN = En.savingFlashcardsMessageUIText
-  | otherwise      = Zz.savingFlashcardsMessageUIText
+savingFlashcardsMessage :: TwoLetterLanguageID -> String
+savingFlashcardsMessage langCode
+  | langCode == EN = En.savingFlashcardsMessage 
+  | otherwise      = Zz.savingFlashcardsMessage 
 
-doneSavingFileMessageUIText :: TwoLetterLanguageID -> String
-doneSavingFileMessageUIText langCode
-  | langCode == EN = En.doneSavingFileMessageUIText
-  | otherwise      = Zz.doneSavingFileMessageUIText
+doneSavingFileMessage :: TwoLetterLanguageID -> String
+doneSavingFileMessage langCode
+  | langCode == EN = En.doneSavingFileMessage 
+  | otherwise      = Zz.doneSavingFileMessage 
 
-unrecognizedInputMessageUIText :: TwoLetterLanguageID -> String
-unrecognizedInputMessageUIText langCode
-  | langCode == EN = En.unrecognizedInputMessageUIText
-  | otherwise      = Zz.unrecognizedInputMessageUIText
+unrecognizedInputMessage :: TwoLetterLanguageID -> String
+unrecognizedInputMessage langCode
+  | langCode == EN = En.unrecognizedInputMessage 
+  | otherwise      = Zz.unrecognizedInputMessage 
 
 {-- The following commented out code exists here
 as a snippet, so that more functions can be easily
@@ -195,7 +195,7 @@ defined by using the template.
 
 Template:
 :: TwoLetterLanguageID -> String
-UIText langCode
+ langCode
   | langCode == EN = En.
   | otherwise      = Zz.
 --}

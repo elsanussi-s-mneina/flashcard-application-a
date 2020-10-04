@@ -4,6 +4,8 @@ Description : Define a data type for specifying a language by name according to 
 -}
 module LanguageIDs where
 
+import Prelude (Eq, Show)
+
 type ISO639_1 = TwoLetterLanguageID
 
 -- | The ISO 639-1 two letter codes.
