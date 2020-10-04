@@ -19,18 +19,18 @@ data Flashcard =
 
 -- | This function adds a flashcard to a lesson.
 -- This function works by returning the lesson with the new flashcard added.
-addFlashcardToLesson :: [Flashcard] -- ^ a list of flashcards
-                     -> String      -- ^ front side of new flashcard
-                     -> String      -- ^ back side of new flashcard
-                     -> [Flashcard] -- ^ a list of flashcards with a new flashcard
-addFlashcardToLesson flashcards front back =
+addFlashcard :: [Flashcard] -- ^ a list of flashcards
+             -> String      -- ^ front side of new flashcard
+             -> String      -- ^ back side of new flashcard
+             -> [Flashcard] -- ^ a list of flashcards with a new flashcard
+addFlashcard flashcards front back =
   flashcards ++ [(Flashcard front back)]
 
 -- | Text that summarizes flashcard in a given list.
 -- It shows the summary of one flashcard per line.
-lessonSummary :: [Flashcard] -- ^ a list of flashcards
-              -> String      -- ^ text containing front and back of each flashcard
-lessonSummary flashcards = unlines (map showFlashcard flashcards)
+summary :: [Flashcard] -- ^ a list of flashcards
+        -> String      -- ^ text containing front and back of each flashcard
+summary flashcards = unlines (map showFlashcard flashcards)
 
 -- | The front of every flashcard in a given list.
 -- It shows the front of one flashcard per line.
@@ -95,17 +95,17 @@ splitOn character text =
 
 
 -- | Convert the flashcards to a tab separated values format.
-tabSeparatedValuesOfLesson :: [Flashcard] -- ^  list of flashcards
-                           -> String      -- ^  plain text containing details of every flashcard
-                                          --    on a separate line, in tab separated values format.
-tabSeparatedValuesOfLesson =
+toTabSeparatedValues :: [Flashcard] -- ^  list of flashcards
+                     -> String      -- ^  plain text containing details of every flashcard
+                                    --    on a separate line, in tab separated values format.
+toTabSeparatedValues =
   concatMap tabSeparatedValuesOfFlashcard
 
 -- | Convert tab separated values (multiple lines) to flashcards.
-tabSeparatedValuesToLesson :: String      -- ^ plain text containing details of every flashcard on a separate line,
-                                          --   in tab separated values format.
-                           -> [Flashcard] -- ^ a list of flashcards
-tabSeparatedValuesToLesson contents =
+fromTabSeparatedValues :: String      -- ^ plain text containing details of every flashcard on a separate line,
+                                      --   in tab separated values format.
+                       -> [Flashcard] -- ^ a list of flashcards
+fromTabSeparatedValues contents =
   map tabSeparatedValuesToFlashcard (lines contents)
 
 -- | surrounding a string with double quotes

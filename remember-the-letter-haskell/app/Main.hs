@@ -9,9 +9,9 @@ module Main (main) where
 
 import Prelude (IO, ($), (++), (==), getLine, head, putStr, putStrLn, return, tail, null)
 
-import Lesson (addFlashcardToLesson, backSummary, Flashcard, frontSummary,
-               lessonSummary, tabSeparatedValuesOfLesson,
-               tabSeparatedValuesToLesson, checkUserAttemptToProvideBack, presentFrontOfFlashcard)
+import qualified Lesson (addFlashcard, backSummary, Flashcard, frontSummary,
+               summary, toTabSeparatedValues,
+               fromTabSeparatedValues, checkUserAttemptToProvideBack, presentFrontOfFlashcard)
 import System.IO (hFlush, readFile, stdout, writeFile)
 import System.Exit (exitSuccess)
 import Control.Monad (unless)
@@ -80,7 +80,7 @@ main =
                  printPrompt
                  fileName <- getLine
                  fileContents <- readFile fileName
-                 let flashcards' = tabSeparatedValuesToLesson fileContents
+                 let flashcards' = Lesson.fromTabSeparatedValues fileContents
                  commandLineLoop flashcards'
                  return ()
         _ | userInput == createLessonFileMenuItemShortcutUIText lang
@@ -93,7 +93,7 @@ main =
                  putStrLn $ unrecognizedInputMessageUIText lang ++ " \"" ++ userInput ++  "\""
                  main
 
-commandLineLoop :: [Flashcard] -> IO ()
+commandLineLoop :: [Lesson.Flashcard] -> IO ()
 commandLineLoop flashcards =
   do
   putStrLn $ showFrontAndBackMenuItemUIText lang
@@ -114,17 +114,17 @@ commandLineLoop flashcards =
               ->
               do
               putStrLn $ printingLessonSummaryHeaderUIText lang
-              putStrLn (lessonSummary flashcards)
+              putStrLn (Lesson.summary flashcards)
        _ | userInput == showFrontMenuItemShortcutUIText lang
               ->
               do
               putStrLn $ printFrontsHeaderUIText lang
-              putStrLn (frontSummary flashcards)
+              putStrLn (Lesson.frontSummary flashcards)
        _ | userInput == showBackMenuItemShortcutUIText lang
               ->
               do
               putStrLn $ printBacksHeaderUIText lang
-              putStrLn (backSummary flashcards)
+              putStrLn (Lesson.backSummary flashcards)
        _ | userInput == addMenuItemShortcutUIText lang
               ->
               do
@@ -139,7 +139,7 @@ commandLineLoop flashcards =
               bSide  <- getLine
               putStrLn (enterBackSideAcknowledgementUIText lang ++ " (" ++
                          bSide ++ ")")
-              let flashcards' = addFlashcardToLesson flashcards fSide bSide
+              let flashcards' = Lesson.addFlashcard flashcards fSide bSide
               putStrLn $ doneAddingFlashcardMessageUIText lang
               commandLineLoop flashcards' -- loop (go back to the beginning)
        _ | userInput == startQuizMenuItemShortcutUIText lang
@@ -155,7 +155,7 @@ commandLineLoop flashcards =
               fileName <- getLine
 
               putStrLn (savingFlashcardsMessageUIText lang ++  "'" ++ fileName ++ "'")
-              _ <- writeFile fileName (tabSeparatedValuesOfLesson flashcards)
+              _ <- writeFile fileName (Lesson.toTabSeparatedValues flashcards)
               putStrLn (doneSavingFileMessageUIText lang ++ " " ++ fileName)
        _ | userInput == exitMenuItemShortcutUIText lang ->  exitSuccess
        _      ->  putStrLn (unrecognizedInputMessageUIText lang ++ " (" ++ userInput ++ ")")
@@ -170,17 +170,17 @@ printPrompt =
                 -- before the user input rather than after.
 
 -- | Asks user to remember the back side of a flashcard .
-quizShowingFrontExpectingBack :: [Flashcard] -> IO ()
+quizShowingFrontExpectingBack :: [Lesson.Flashcard] -> IO ()
 quizShowingFrontExpectingBack [] = return ()
 quizShowingFrontExpectingBack flashcards =
     let flashcard = head flashcards
     in
     do
-    putStrLn $ presentFrontOfFlashcard flashcard
+    putStrLn $ Lesson.presentFrontOfFlashcard flashcard
     putStrLn $ backSideQuizPromptUIText lang
     printPrompt
     userAttempt <- getLine
-    putStrLn (if checkUserAttemptToProvideBack flashcard userAttempt
+    putStrLn (if Lesson.checkUserAttemptToProvideBack flashcard userAttempt
               then correctAnswerMessageUIText lang
               else incorrectAnswerMessageUIText lang
              )

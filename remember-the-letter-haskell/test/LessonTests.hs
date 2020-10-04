@@ -8,12 +8,12 @@ module LessonTests (lessonSpecs) where
 import Prelude (($), (++), length)
 
 import Test.Hspec (describe, it, shouldBe, Spec)
-import Lesson (addFlashcardToLesson, backSummary,
+import Lesson (addFlashcard, backSummary,
                Flashcard(Flashcard, back, front),
-               frontSummary, lessonSummary,
+               frontSummary, summary,
                showFlashcard, showFlashcardBack, showFlashcardFront,
-               tabSeparatedValuesOfFlashcard, tabSeparatedValuesOfLesson,
-               tabSeparatedValuesToFlashcard, tabSeparatedValuesToLesson,
+               tabSeparatedValuesOfFlashcard, toTabSeparatedValues,
+               tabSeparatedValuesToFlashcard, fromTabSeparatedValues,
                presentBackOfFlashcard, presentFrontOfFlashcard)
 
 flashcards :: [Flashcard]
@@ -78,17 +78,17 @@ lessonSpecs =
           (showFlashcard (tabSeparatedValuesToFlashcard "rabbit\n"))
             `shouldBe`
             "rabbit | "
-  describe "tabSeparatedValuesToLesson" $ do
+  describe "Lesson.fromTabSeparatedValues" $ do
     it ("should give an empty list when given an empty string") $ do
-      (tabSeparatedValuesToLesson "") `shouldBe` []
+      (Lesson.fromTabSeparatedValues "") `shouldBe` []
     it ("should give an 3 element list when given 3 lines") $ do
-       length (tabSeparatedValuesToLesson "a\tb\nc\td\ne\tf\n")
+       length (Lesson.fromTabSeparatedValues "a\tb\nc\td\ne\tf\n")
        `shouldBe` 3
-  describe "tabSeparatedValuesOfLesson" $ do
+  describe "Lesson.toTabSeparatedValues" $ do
     it ("should return an empty string when given an empty list") $ do
-      tabSeparatedValuesOfLesson [] `shouldBe` ""
+      Lesson.toTabSeparatedValues [] `shouldBe` ""
     it ("should return three lines when given a 3-element list") $ do
-      tabSeparatedValuesOfLesson [ (Flashcard "a"   "1")
+      Lesson.toTabSeparatedValues [ (Flashcard "a"   "1")
                                  , (Flashcard "ab"  "2")
                                  , (Flashcard "abc" "3")]
       `shouldBe` "a\t1\nab\t2\nabc\t3\n"
@@ -116,26 +116,26 @@ lessonSpecs =
                     (Flashcard "b" "blue")]
       `shouldBe`
       "red\nblue\n"
-  describe "lessonSummary" $ do
+  describe "Lesson.summary" $ do
     it ("should,return the front side then a pipe character " ++
         " then the back side of the first card " ++
         " followed by a new line followed by the front side " ++
         " then a pipe character" ++
         " then the back side of second card") $ do
-        lessonSummary flashcards `shouldBe` "the | le/la\na | un/une\n"
+        Lesson.summary flashcards `shouldBe` "the | le/la\na | un/une\n"
     it "should return three lines when given a list of three cards" $ do
-       lessonSummary [(Flashcard "a" "A"),
-                      (Flashcard "b" "B"),
-                      (Flashcard "c" "C")]
+       Lesson.summary [(Flashcard "a" "A"),
+                       (Flashcard "b" "B"),
+                       (Flashcard "c" "C")]
        `shouldBe`
         "a | A\nb | B\nc | C\n"
-  describe "addFlashcardToLesson" $ do
+  describe "addFlashcard" $ do
     it "should return a list with one more flashcard" $ do
-      length $ addFlashcardToLesson [(Flashcard "a" "b")] "c" "d"
+      length $ addFlashcard [(Flashcard "a" "b")] "c" "d"
       `shouldBe` 2
     it ("should return a list with the flashcard" ++
         " at the end of the original list") $ do
-      addFlashcardToLesson [(Flashcard "x" "y"), (Flashcard "b" "c")]
+      Lesson.addFlashcard [(Flashcard "x" "y"), (Flashcard "b" "c")]
                             "r" "s"
       `shouldBe`           [(Flashcard "x" "y"),
                             (Flashcard "b" "c"),
