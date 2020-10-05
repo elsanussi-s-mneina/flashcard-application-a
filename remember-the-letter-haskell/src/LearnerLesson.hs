@@ -6,15 +6,9 @@ module LearnerLesson where
 
 import Prelude ((+), Show, Eq, Int)
 
-import Flashcard(Flashcard)
+import Types.Flashcard(Flashcard)
+import Types.LearnerFlashcard(LearnerFlashcard(LearnerFlashcard), flashcard, correctCount, attemptCount)
 
--- | A flashcard with user specific information.
-data LearnerFlashcard = LearnerFlashcard
-  { flashcard :: Flashcard   -- ^ a flashcard
-  , correctCount :: Int      -- ^ the number of correct guesses the user made
-  , attemptCount :: Int      -- ^ the number of guesses both correct or incorrect the user made
-  } 
-  deriving (Show, Eq)
 
 -- | The function that given a flashcard (and learner-flashcard statistics) returns the flashcard
 --   after its learner recalls that flashcard correctly.

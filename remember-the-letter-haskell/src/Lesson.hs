@@ -6,7 +6,7 @@ Description : A lesson consists of flashcard data, and related functions.
 
 module Lesson where
 
-import Flashcard (Flashcard(Flashcard))
+import Types.Flashcard (Flashcard(Flashcard))
 import qualified Flashcard
 
 -- | This function adds a flashcard to a lesson.

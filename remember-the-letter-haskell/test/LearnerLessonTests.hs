@@ -8,8 +8,9 @@ module LearnerLessonTests (learnerLessonSpecs) where
 import Prelude (($), (++) )
 
 import Test.Hspec (describe, it, shouldBe, Spec)
+import Types.LearnerFlashcard(LearnerFlashcard(LearnerFlashcard))
 import LearnerLesson 
-  (LearnerFlashcard(LearnerFlashcard), learnerAnswersCorrectly, learnerAnswersIncorrectly)
+  (learnerAnswersCorrectly, learnerAnswersIncorrectly)
 
 import Flashcard (Flashcard(Flashcard))
 import qualified Flashcard (front, back)

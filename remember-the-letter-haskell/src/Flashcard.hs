@@ -4,19 +4,11 @@ Description : A flashcard contains text data divided into two sides.
 -}
 
 
-module Flashcard where
+module Flashcard (module Types.Flashcard, show, showFront, showBack, toTabSeparatedValues, fromTabSeparatedValues,
+   presentFront, presentBack, checkUserAttemptToProvideBack, checkUserAttemptToProvideFront) where
 
 import Prelude ((==), (/=), (++), Bool, Char, Eq, Show, String, break, filter)
-
--- | A flashcard has a front side, and a back side.
--- The front of the flashcard contains text.
--- The back of the flashcard contains text.
-data Flashcard =
-  Flashcard
-  { front :: String
-  , back  :: String
-  } deriving (Eq, Show)
-
+import Types.Flashcard (Flashcard(Flashcard), front, back)
 
 -- | The front and back of a single flashcard.
 -- Specifically:
@@ -75,7 +67,7 @@ doubleQuote s = "\"" ++ s ++ "\""
 --   what the back of the current flashcard is.
 --   This may be used in a quiz.
 presentBack :: Flashcard -- ^ a flashcard
-                       -> String    -- ^ text declaring the back of a flashcard to the user,
+            -> String    -- ^ text declaring the back of a flashcard to the user,
                                     --   in a clear manner.
 presentBack fla = "I am showing you the back of a flashcard.\nYou see " ++ doubleQuote (showBack fla)
 
